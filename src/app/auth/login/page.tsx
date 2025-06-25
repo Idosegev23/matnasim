@@ -46,90 +46,49 @@ export default function LoginPage() {
   }
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: '#f5f5f5',
-      fontFamily: 'Arial, sans-serif'
-    }}>
-      <div style={{
-        backgroundColor: 'white',
-        padding: '2rem',
-        borderRadius: '8px',
-        boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-        width: '100%',
-        maxWidth: '400px'
-      }}>
-        <h1 style={{
-          textAlign: 'center',
-          marginBottom: '2rem',
-          color: '#333',
-          fontSize: '1.5rem'
-        }}>
-          כניסה למערכת - מנהלים
-        </h1>
-
-        <form onSubmit={handleSubmit} style={{ marginBottom: '2rem' }}>
-          <div style={{ marginBottom: '1rem' }}>
-            <label style={{
-              display: 'block',
-              marginBottom: '0.5rem',
-              fontWeight: 'bold',
-              color: '#555'
-            }}>
+    <div className="page-container">
+      <div className="card">
+        <div className="card-header">
+          <h2 className="card-title">
+            כניסה למערכת
+          </h2>
+          <p className="card-subtitle">
+            מנהלי מתנסים
+          </p>
+        </div>
+        
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="email" className="form-label">
               אימייל:
             </label>
             <input
+              id="email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              style={{
-                width: '100%',
-                padding: '0.75rem',
-                border: '1px solid #ddd',
-                borderRadius: '4px',
-                fontSize: '1rem',
-                direction: 'ltr'
-              }}
+              className="form-input"
+              style={{ direction: 'ltr' }}
             />
           </div>
 
-          <div style={{ marginBottom: '1rem' }}>
-            <label style={{
-              display: 'block',
-              marginBottom: '0.5rem',
-              fontWeight: 'bold',
-              color: '#555'
-            }}>
+          <div className="form-group">
+            <label htmlFor="password" className="form-label">
               סיסמה:
             </label>
             <input
+              id="password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              style={{
-                width: '100%',
-                padding: '0.75rem',
-                border: '1px solid #ddd',
-                borderRadius: '4px',
-                fontSize: '1rem'
-              }}
+              className="form-input"
             />
           </div>
 
           {error && (
-            <div style={{
-              color: '#d32f2f',
-              backgroundColor: '#ffebee',
-              padding: '0.75rem',
-              borderRadius: '4px',
-              marginBottom: '1rem',
-              textAlign: 'center'
-            }}>
+            <div className="alert alert-danger">
               {error}
             </div>
           )}
@@ -137,30 +96,17 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            style={{
-              width: '100%',
-              padding: '0.75rem',
-              backgroundColor: loading ? '#ccc' : '#1976d2',
-              color: 'white',
-              border: 'none',
-              borderRadius: '4px',
-              fontSize: '1rem',
-              cursor: loading ? 'not-allowed' : 'pointer',
-              transition: 'background-color 0.3s'
-            }}
+            className="btn btn-primary btn-full"
           >
             {loading ? 'מתחבר...' : 'כניסה'}
           </button>
         </form>
 
-        <div style={{
-          textAlign: 'center',
-          marginTop: '1rem'
-        }}>
+        <div className="text-center mt-4">
           <a 
             href="/auth/register" 
             style={{
-              color: '#1976d2',
+              color: 'var(--secondary-color)',
               textDecoration: 'none',
               fontSize: '0.9rem'
             }}
