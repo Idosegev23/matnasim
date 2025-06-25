@@ -67,15 +67,21 @@ export async function GET(request: NextRequest) {
       admin: {
         name: admin.full_name,
         email: admin.email,
-        organization: admin.organization_name
+        organization: admin.organization_name || 'לא מוגדר'
       },
       stats: {
-        totalManagers: managers?.length || 0,
-        totalQuestionnaires: questionnaires?.length || 0,
-        completedQuestionnaires: completions?.length || 0,
-        recentInvitations: invitations?.length || 0
+        total_managers: managers?.length || 0,
+        active_questionnaires: questionnaires?.length || 0,
+        completed_this_month: completions?.length || 0,
+        pending_invitations: invitations?.length || 0
       },
-      recentActivity: invitations || []
+      recent_activity: invitations?.map((inv, index) => ({
+        id: index + 1,
+        type: 'invitation_created',
+        manager_name: `הזמנה נשלחה`,
+        timestamp: inv.created_at
+      })) || [],
+      managers_progress: []
     })
 
   } catch (error) {

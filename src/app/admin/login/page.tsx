@@ -70,6 +70,7 @@ export default function AdminLoginPage() {
               required
               className="form-input"
               style={{ direction: 'ltr' }}
+              autoComplete="email"
             />
           </div>
 
@@ -84,6 +85,7 @@ export default function AdminLoginPage() {
               onChange={(e) => setPassword(e.target.value)}
               required
               className="form-input"
+              autoComplete="current-password"
             />
           </div>
 

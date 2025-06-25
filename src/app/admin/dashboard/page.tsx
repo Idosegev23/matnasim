@@ -246,7 +246,7 @@ export default function AdminDashboardPage() {
         <div className="card">
           <h3 className="mb-4">פעילות אחרונה</h3>
           <div style={{ maxHeight: '300px', overflowY: 'auto' }}>
-            {dashboardData.recent_activity.length > 0 ? (
+            {dashboardData.recent_activity && dashboardData.recent_activity.length > 0 ? (
               dashboardData.recent_activity.map((activity) => (
                 <div key={activity.id} style={{ 
                   padding: '10px 0', 
@@ -269,7 +269,7 @@ export default function AdminDashboardPage() {
         <div className="card">
           <h3 className="mb-4">התקדמות מנהלים</h3>
           <div style={{ maxHeight: '300px', overflowY: 'auto' }}>
-            {dashboardData.managers_progress.length > 0 ? (
+            {dashboardData.managers_progress && dashboardData.managers_progress.length > 0 ? (
               dashboardData.managers_progress.map((manager) => (
                 <div key={manager.id} style={{ 
                   padding: '15px 0', 
