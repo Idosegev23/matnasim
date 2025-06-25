@@ -48,7 +48,7 @@ export default function DashboardPage() {
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const token = localStorage.getItem('authToken')
+        const token = localStorage.getItem('token')
         if (!token) {
           router.push('/auth/login')
           return
@@ -66,7 +66,7 @@ export default function DashboardPage() {
         } else {
           setError('שגיאה בטעינת נתוני הדשבורד')
           if (response.status === 401) {
-            localStorage.removeItem('authToken')
+            localStorage.removeItem('token')
             router.push('/auth/login')
           }
         }
@@ -81,7 +81,7 @@ export default function DashboardPage() {
   }, [router])
 
   const handleLogout = () => {
-    localStorage.removeItem('authToken')
+    localStorage.removeItem('token')
     router.push('/')
   }
 

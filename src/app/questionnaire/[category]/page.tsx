@@ -62,7 +62,7 @@ export default function QuestionnairePage() {
   const fetchQuestionnaire = async () => {
     try {
       setLoading(true);
-      const token = localStorage.getItem('authToken');
+      const token = localStorage.getItem('token');
       
       if (!token) {
         router.push('/auth/login');
@@ -149,7 +149,7 @@ export default function QuestionnairePage() {
   const saveAnswer = async (questionId: string) => {
     try {
       setSaving(true);
-      const token = localStorage.getItem('authToken');
+      const token = localStorage.getItem('token');
       
       const response = await fetch(`/api/questionnaire/${category}/answers`, {
         method: 'POST',
@@ -179,7 +179,7 @@ export default function QuestionnairePage() {
   const completeQuestionnaire = async () => {
     try {
       setSaving(true);
-      const token = localStorage.getItem('authToken');
+      const token = localStorage.getItem('token');
       
       const response = await fetch(`/api/questionnaire/${category}/complete`, {
         method: 'POST',

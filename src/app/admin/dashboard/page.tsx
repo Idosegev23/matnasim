@@ -49,7 +49,7 @@ export default function AdminDashboardPage() {
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const token = localStorage.getItem('authToken')
+        const token = localStorage.getItem('token')
         if (!token) {
           router.push('/admin/login')
           return
@@ -67,7 +67,7 @@ export default function AdminDashboardPage() {
         } else {
           setError('שגיאה בטעינת נתוני הדשבורד')
           if (response.status === 401) {
-            localStorage.removeItem('authToken')
+            localStorage.removeItem('token')
             router.push('/admin/login')
           }
         }
@@ -82,13 +82,13 @@ export default function AdminDashboardPage() {
   }, [router])
 
   const handleLogout = () => {
-    localStorage.removeItem('authToken')
+    localStorage.removeItem('token')
     router.push('/')
   }
 
   const refreshDashboardData = async () => {
     try {
-      const token = localStorage.getItem('authToken')
+      const token = localStorage.getItem('token')
       const response = await fetch('/api/dashboard/admin', {
         headers: {
           'Authorization': `Bearer ${token}`
@@ -112,7 +112,7 @@ export default function AdminDashboardPage() {
 
     setCreating(true)
     try {
-      const token = localStorage.getItem('authToken')
+      const token = localStorage.getItem('token')
       const response = await fetch('/api/invitations/create', {
         method: 'POST',
         headers: {
