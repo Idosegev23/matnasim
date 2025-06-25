@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שאלון נגישות - מתנ"ס</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-content">
+            <div class="nav-right">
+                <a href="index.html" class="back-button">
+                    <i class="fas fa-arrow-right"></i>
+                    חזרה לדף הראשי
+                </a>
+                <div class="questionnaire-title">
+                    <i class="fas fa-universal-access"></i>
+                    שאלון נגישות
+                </div>
+            </div>
+            <div class="questionnaire-progress">
+                <span class="progress-label">התקדמות השאלון:</span>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <span class="progress-text">0%</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <form id="accessibilityForm">
+            <!-- נגישות פיזית -->
+            <section class="questionnaire-section">
+                <div class="section-header">
+                    <i class="fas fa-wheelchair"></i>
+                    <h2>נגישות פיזית</h2>
+                </div>
+                <div class="info-text">
+                    <i class="fas fa-info-circle"></i>
+                    <span>יש לוודא התאמות נגישות פיזיות במבנה ובסביבתו</span>
+                </div>
+
+                <div class="question-group">
+                    <p>1. האם קיימת חניית נכים תקנית בסמוך לכניסה למתנ"ס?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q1" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q1" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט מדוע אין חניית נכים תקנית:</label>
+                        <textarea name="q1_text"></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>2. האם קיימת גישה נגישה (רמפה תקנית) מהחניה ועד לכניסה למבנה?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q2" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q2" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט מדוע אין גישה נגישה:</label>
+                        <textarea name="q2_text"></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>3. האם קיימים שירותי נכים תקניים?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q3" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q3" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט מדוע אין שירותי נכים תקניים:</label>
+                        <textarea name="q3_text"></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <!-- נגישות שירות -->
+            <section class="questionnaire-section">
+                <div class="section-header">
+                    <i class="fas fa-hands-helping"></i>
+                    <h2>נגישות שירות</h2>
+                </div>
+                <div class="info-text">
+                    <i class="fas fa-info-circle"></i>
+                    <span>יש לוודא התאמות נגישות בשירות הניתן במתנ"ס</span>
+                </div>
+
+                <div class="question-group">
+                    <p>4. האם קיים רכז נגישות במתנ"ס?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q4" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q4" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט מדוע אין רכז נגישות:</label>
+                        <textarea name="q4_text"></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>5. האם צוות המתנ"ס עבר הדרכת נגישות השירות?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q5" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q5" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט מדוע לא בוצעה הדרכת נגישות:</label>
+                        <textarea name="q5_text"></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <!-- נגישות דיגיטלית -->
+            <section class="questionnaire-section">
+                <div class="section-header">
+                    <i class="fas fa-laptop"></i>
+                    <h2>נגישות דיגיטלית</h2>
+                </div>
+                <div class="info-text">
+                    <i class="fas fa-info-circle"></i>
+                    <span>יש לוודא התאמות נגישות באמצעים הדיגיטליים</span>
+                </div>
+
+                <div class="question-group">
+                    <p>6. האם אתר האינטרנט של המתנ"ס נגיש בהתאם לתקנות?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q6" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q6" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט מדוע האתר אינו נגיש:</label>
+                        <textarea name="q6_text"></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>7. האם קיימת אפשרות לקבלת מידע בפורמטים נגישים (הקראה, כתב מוגדל, ברייל)?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q7" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q7" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט מדוע אין אפשרות לקבלת מידע בפורמטים נגישים:</label>
+                        <textarea name="q7_text"></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <!-- אמצעי עזר והתאמות -->
+            <section class="questionnaire-section">
+                <div class="section-header">
+                    <i class="fas fa-assistive-listening-systems"></i>
+                    <h2>אמצעי עזר והתאמות</h2>
+                </div>
+                <div class="info-text">
+                    <i class="fas fa-info-circle"></i>
+                    <span>יש לוודא קיום אמצעי עזר והתאמות נגישות נדרשות</span>
+                </div>
+
+                <div class="question-group">
+                    <p>8. האם קיימת מערכת עזר לשמיעה (מערכת הגברה/לולאת השראה)?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q8" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q8" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט מדוע אין מערכת עזר לשמיעה:</label>
+                        <textarea name="q8_text"></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>9. האם קיים שילוט הכוונה נגיש (כולל ברייל)?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q9" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q9" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט מדוע אין שילוט הכוונה נגיש:</label>
+                        <textarea name="q9_text"></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>10. האם קיימים אמצעי עזר להנגשת פעילויות (ציוד מותאם, עזרים טכנולוגיים)?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q10" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q10" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט מדוע אין אמצעי עזר להנגשת פעילויות:</label>
+                        <textarea name="q10_text"></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <div class="form-actions">
+                <div class="auto-save-status">
+                    <i class="fas fa-sync"></i>
+                    התשובות נשמרות אוטומטית
+                </div>
+                <button type="submit" class="submit-button">
+                    <i class="fas fa-check"></i>
+                    סיים שאלון
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

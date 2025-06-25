@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>סיכום שאלוני הערכה - מתנ"סים</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-content">
+            <div class="search-section">
+                <input type="text" id="searchInput" placeholder="חיפוש מתנ״ס...">
+                <select id="cityFilter">
+                    <option value="">כל הערים</option>
+                </select>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>סיכום שאלוני הערכה - מתנ"סים</h1>
+        
+        <section class="centers-grid" id="centersGrid">
+            <!-- הכרטיסיות ייווצרו דינמית על ידי JavaScript -->
+        </section>
+
+        <!-- מודל להצגת פרטי המתנ"ס -->
+        <div id="centerModal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <div class="modal-header">
+                    <h2 id="modalCenterName"></h2>
+                    <div class="center-details">
+                        <p id="modalManagerName"></p>
+                        <p id="modalCity"></p>
+                        <p id="modalPhone"></p>
+                        <p id="modalEmail"></p>
+                    </div>
+                </div>
+                <div class="questionnaires-summary">
+                    <div class="summary-tabs">
+                        <button class="tab-button active" data-tab="inventory">ניהול מלאי</button>
+                        <button class="tab-button" data-tab="youth">ילדים ונוער</button>
+                        <button class="tab-button" data-tab="registration">אישורים ותעודות</button>
+                        <button class="tab-button" data-tab="legal">משפטי</button>
+                        <button class="tab-button" data-tab="financial">ניהול כספי</button>
+                        <button class="tab-button" data-tab="hr">כוח אדם</button>
+                        <button class="tab-button" data-tab="budget">תקציב</button>
+                        <button class="tab-button" data-tab="accounting">הנהלת חשבונות</button>
+                    </div>
+                    <div class="summary-content" id="summaryContent">
+                        <!-- התוכן ייטען דינמית על ידי JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="summary.js"></script>
+</body>
+</html> 

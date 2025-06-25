@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שאלון ניהול ובקרה - מתנ"ס</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-content">
+            <div class="nav-right">
+                <a href="index.html" class="back-button">
+                    <i class="fas fa-arrow-right"></i>
+                    חזרה לדף הראשי
+                </a>
+                <div class="questionnaire-title">
+                    <i class="fas fa-tasks"></i>
+                    שאלון ניהול ובקרה
+                </div>
+            </div>
+            <div class="questionnaire-progress">
+                <span class="progress-label">התקדמות השאלון:</span>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <span class="progress-text">0%</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <form id="sgarotForm">
+            <!-- אבטחת מידע -->
+            <section class="questionnaire-section">
+                <div class="section-header">
+                    <i class="fas fa-shield-alt"></i>
+                    <h2>אבטחת מידע</h2>
+                </div>
+
+                <div class="info-text">
+                    <i class="fas fa-info-circle"></i>
+                    <span>חשוב לוודא שכל המערכות והתוכנות במתנ"ס מאובטחות ומנוהלות כראוי</span>
+                </div>
+
+                <!-- שאלה 1 -->
+                <div class="question-group">
+                    <p>1. האם קיים רישיון לכל התוכניות המצויות במרכז?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q1" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q1" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט אילו תוכנות חסרות רישיון:</label>
+                        <textarea name="q1_text" placeholder="פרט את התוכנות החסרות רישיון..."></textarea>
+                    </div>
+                </div>
+
+                <!-- שאלה 2 -->
+                <div class="question-group">
+                    <p>2. האם התוכנות סרוקות בענן?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q2" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q2" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט מדוע התוכנות אינן סרוקות בענן:</label>
+                        <textarea name="q2_text"></textarea>
+                    </div>
+                </div>
+
+                <!-- שאלה 3 -->
+                <div class="question-group">
+                    <p>3. האם מתבצע גיבוי בהתאם להמלצות הנהלים?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q3" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q3" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט את אופן הגיבוי הנוכחי:</label>
+                        <textarea name="q3_text"></textarea>
+                    </div>
+                </div>
+
+                <!-- שאלה 4 -->
+                <div class="question-group">
+                    <p>4. האם מותקן אנטי-וירוס תקף בכל המחשבים?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q4" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q4" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט באילו מחשבים חסר אנטי-וירוס:</label>
+                        <textarea name="q4_text"></textarea>
+                    </div>
+                </div>
+
+                <!-- שאלה 5 -->
+                <div class="question-group">
+                    <p>5. האם המשתמשים עובדים עם תוכנות החברה בלבד?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q5" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q5" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט אילו תוכנות נוספות בשימוש:</label>
+                        <textarea name="q5_text"></textarea>
+                    </div>
+                </div>
+
+                <!-- שאלה 6 -->
+                <div class="question-group">
+                    <p>6. האם קיימות חובות משתתפים?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q6" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q6" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט את היקף החובות והטיפול בהם:</label>
+                        <textarea name="q6_text"></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <!-- שגרות ניהול -->
+            <section class="questionnaire-section">
+                <div class="section-header">
+                    <i class="fas fa-tasks"></i>
+                    <h2>שגרות ניהול</h2>
+                </div>
+
+                <div class="info-text">
+                    <i class="fas fa-info-circle"></i>
+                    <span>ניהול תקין מחייב קיום שגרות עבודה מסודרות ומעקב שוטף</span>
+                </div>
+
+                <!-- שאלה 7 -->
+                <div class="question-group">
+                    <p>7. האם קיימות תוכניות עבודה המותאמות לתקציב?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q7" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q7" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט את הפערים בין התוכניות לתקציב:</label>
+                        <textarea name="q7_text"></textarea>
+                    </div>
+                </div>
+
+                <!-- שאלה 8 -->
+                <div class="question-group">
+                    <p>8. האם למרכז יש חזון ברור?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q8" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q8" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט מדוע אין חזון ברור:</label>
+                        <textarea name="q8_text"></textarea>
+                    </div>
+                </div>
+
+                <!-- שאלה 9 -->
+                <div class="question-group">
+                    <p>9. האם החזון בא לידי ביטוי בתוכניות העבודה?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q9" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q9" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט את הפערים בין החזון לתוכניות העבודה:</label>
+                        <textarea name="q9_text"></textarea>
+                    </div>
+                </div>
+
+                <!-- שאלה 10 -->
+                <div class="question-group">
+                    <p>10. האם נערכות פגישות קבועות עם ראש הרשות?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q10" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q10" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט את תדירות הפגישות הרצויה:</label>
+                        <textarea name="q10_text"></textarea>
+                    </div>
+                </div>
+
+                <!-- שאלה 11 -->
+                <div class="question-group">
+                    <p>11. האם מתקיימות פגישות שוטפות עם הצוות?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q11" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q11" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט את המצב הקיים:</label>
+                        <textarea name="q11_text"></textarea>
+                    </div>
+                </div>
+
+                <!-- שאלה 12 -->
+                <div class="question-group">
+                    <p>12. האם נערכות פגישות עם יו"ר ההנהלה?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q12" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q12" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט את תדירות הפגישות:</label>
+                        <textarea name="q12_text"></textarea>
+                    </div>
+                </div>
+
+                <!-- שאלה 13 -->
+                <div class="question-group">
+                    <p>13. האם מתקיימת הערכת עובדים באופן סדיר?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q13" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q13" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט את תהליך הערכת העובדים:</label>
+                        <textarea name="q13_text"></textarea>
+                    </div>
+                </div>
+            </section>
+
+           
+
+            <div class="form-actions">
+                <div class="auto-save-status">
+                    <i class="fas fa-sync"></i>
+                    התשובות נשמרות אוטומטית
+                </div>
+                <button type="submit" class="submit-button">
+                    <i class="fas fa-check"></i>
+                    סיים שאלון
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

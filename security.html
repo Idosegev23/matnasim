@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שאלון ביטחון ובטיחות - מתנ"ס</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-content">
+            <div class="nav-right">
+                <a href="index.html" class="back-button">
+                    <i class="fas fa-arrow-right"></i>
+                    חזרה לדף הראשי
+                </a>
+                <div class="questionnaire-title">
+                    <i class="fas fa-shield-alt"></i>
+                    שאלון ביטחון ובטיחות
+                </div>
+            </div>
+            <div class="questionnaire-progress">
+                <span class="progress-label">התקדמות השאלון:</span>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <span class="progress-text">0%</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <form id="securityForm">
+            <!-- תיק חירום -->
+            <section class="questionnaire-section">
+                <div class="section-header">
+                    <i class="fas fa-folder-open"></i>
+                    <h2>תיק חירום</h2>
+                </div>
+                <div class="info-text">
+                    <i class="fas fa-info-circle"></i>
+                    <span>יש לוודא קיום ועדכניות תיק החירום</span>
+                </div>
+
+                <div class="question-group">
+                    <p>1. האם למתנ"ס יש תיק חירום מעודכן לשנה זו?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q1" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q1" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט מדוע אין תיק חירום מעודכן:</label>
+                        <textarea name="q1_text"></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>2. האם העתק תיק החירום נמצא בידי גורמים נוספים כנדרש בהנחייה?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q2" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q2" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט מדוע אין העתק תיק חירום בידי הגורמים הנדרשים:</label>
+                        <textarea name="q2_text"></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>3. האם קיים דף קשר ונוהלי התקשרות לגופי חירום/מוקדי חירום ונמצא בידי הגורם המוסמך?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q3" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q3" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט מדוע אין דף קשר ונהלים:</label>
+                        <textarea name="q3_text"></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <!-- הכשרות והדרכות -->
+            <section class="questionnaire-section">
+                <div class="section-header">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <h2>הכשרות והדרכות</h2>
+                </div>
+                <div class="info-text">
+                    <i class="fas fa-info-circle"></i>
+                    <span>יש לוודא ביצוע כל ההכשרות וההדרכות הנדרשות</span>
+                </div>
+
+                <!-- המשך השאלות להכשרות והדרכות -->
+                <div class="question-group">
+                    <p>4. האם במתנ"ס הוכשר נאמן ביטחון, בטיחות וחירום (הג"א)?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q4" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q4" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט מדוע לא הוכשר נאמן ביטחון:</label>
+                        <textarea name="q4_text"></textarea>
+                    </div>
+                </div>
+
+                <!-- שאר השאלות בנושא הכשרות והדרכות... -->
+            </section>
+
+            <!-- בדיקות בטיחות שוטפות -->
+            <section class="questionnaire-section">
+                <div class="section-header">
+                    <i class="fas fa-clipboard-check"></i>
+                    <h2>בדיקות בטיחות שוטפות</h2>
+                </div>
+                <div class="info-text">
+                    <i class="fas fa-info-circle"></i>
+                    <span>יש לוודא ביצוע כל בדיקות הבטיחות הנדרשות במועדן</span>
+                </div>
+
+                <!-- המשך השאלות לבדיקות בטיחות... -->
+            </section>
+
+            <div class="form-actions">
+                <div class="auto-save-status">
+                    <i class="fas fa-sync"></i>
+                    התשובות נשמרות אוטומטית
+                </div>
+                <button type="submit" class="submit-button">
+                    <i class="fas fa-check"></i>
+                    סיים שאלון
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

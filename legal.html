@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שאלון משפטי</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-content">
+            <a href="index.html" class="back-button">
+                <i class="fas fa-arrow-right"></i>
+                חזרה לדף הראשי
+            </a>
+            <div class="questionnaire-progress">
+                <span class="progress-label">התקדמות בשאלון:</span>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <span class="progress-text">0%</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>שאלון משפטי</h1>
+        
+        <form id="legalForm">
+            <section class="questionnaire-section">
+                <h2>חוזים והסכמים</h2>
+
+                <div class="question-group">
+                    <p>1. האם קיימים חוזי העסקה חתומים לכל העובדים?</p>
+                    <div class="info-text">נדרש חוזה העסקה תקף וחתום לכל עובד במרכז</div>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q1" value="yes" required>
+                            כן, לכל העובדים יש חוזים חתומים
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q1" value="no">
+                            לא
+                        </label>
+                    </div>
+                    <div class="follow-up" data-show-on="no">
+                        <label>נא לפרט אילו חוזים חסרים:</label>
+                        <textarea required></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>2. האם קיימים הסכמי שכירות בתוקף לכל המבנים?</p>
+                    <div class="info-text">נדרש הסכם שכירות תקף לכל מבנה בשימוש המרכז</div>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q2" value="yes" required>
+                            כן, כל ההסכמים בתוקף
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q2" value="no">
+                            לא
+                        </label>
+                    </div>
+                    <div class="follow-up" data-show-on="no">
+                        <label>נא לפרט אילו הסכמים חסרים או לא בתוקף:</label>
+                        <textarea required></textarea>
+                    </div>
+                </div>
+
+                <h2>ביטוח ואחריות</h2>
+
+                <div class="question-group">
+                    <p>3. האם קיימות פוליסות ביטוח בתוקף?</p>
+                    <div class="info-text">נדרשות פוליסות ביטוח צד ג', חבות מעבידים וביטוח מבנה</div>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q3" value="yes" required>
+                            כן, כל הביטוחים בתוקף
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q3" value="no">
+                            לא
+                        </label>
+                    </div>
+                    <div class="follow-up" data-show-on="no">
+                        <label>נא לפרט אילו ביטוחים חסרים:</label>
+                        <textarea required></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>4. האם קיימים טפסי הצהרת בריאות חתומים למשתתפי החוגים?</p>
+                    <div class="info-text">נדרשת הצהרת בריאות חתומה לכל משתתף בחוגי ספורט</div>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q4" value="yes" required>
+                            כן, קיימים טפסים לכל המשתתפים
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q4" value="no">
+                            לא
+                        </label>
+                    </div>
+                    <div class="follow-up" data-show-on="no">
+                        <label>נא לפרט היכן חסרים טפסים:</label>
+                        <textarea required></textarea>
+                    </div>
+                </div>
+
+                <h2>תקנון ונהלים</h2>
+
+                <div class="question-group">
+                    <p>5. האם קיים תקנון מאושר למרכז הקהילתי?</p>
+                    <div class="info-text">נדרש תקנון מאושר על ידי הנהלת המרכז</div>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q5" value="yes" required>
+                            כן, קיים תקנון מאושר
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q5" value="no">
+                            לא
+                        </label>
+                    </div>
+                    <div class="follow-up" data-show-on="no">
+                        <label>נא לפרט מדוע אין תקנון מאושר:</label>
+                        <textarea required></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <div class="form-actions">
+                <button type="button" class="save-button">
+                    <i class="fas fa-save"></i>
+                    שמור תשובות
+                </button>
+                <button type="submit" class="submit-button">
+                    <i class="fas fa-check"></i>
+                    סיים שאלון
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

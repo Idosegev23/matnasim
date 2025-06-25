@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שאלון תשלום שכר ונלוות</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-content">
+            <a href="index.html" class="back-button">
+                <i class="fas fa-arrow-right"></i>
+                חזרה לדף הראשי
+            </a>
+            <div class="questionnaire-progress">
+                <span class="progress-label">התקדמות בשאלון:</span>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <span class="progress-text">0%</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>שאלון תשלום שכר ונלוות</h1>
+        
+        <form id="salaryForm">
+            <div class="question-group">
+                <p>1. האם חשבת השכר בעלת ידע והכשרה מקצועית נאותה (לכל הפחות עברה קורס חשבי שכר)?</p>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="q1" value="yes" required>
+                        כן
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="q1" value="no">
+                        לא
+                    </label>
+                </div>
+                <div class="follow-up" data-show-on="no">
+                    <label>נא לפרט:</label>
+                    <textarea required></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <p>2. האם חשבת השכר בודקת את כל טיוטות תלושי השכר, בהתאם לנוהל השכר?</p>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="q2" value="yes" required>
+                        כן
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="q2" value="no">
+                        לא
+                    </label>
+                </div>
+                <div class="follow-up" data-show-on="no">
+                    <label>נא לפרט:</label>
+                    <textarea required></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <p>3. האם מנהל המתנ"ס בודק מדגמית את תלושי העובדים למול גליונות הנוכחות (במקרה של פחות מ-50 עובדים - בדיקה של כלל התלושים)?</p>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="q3" value="yes" required>
+                        כן
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="q3" value="no">
+                        לא
+                    </label>
+                </div>
+                <div class="follow-up" data-show-on="no">
+                    <label>נא לפרט:</label>
+                    <textarea required></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <p>4. האם מנהל המתנ"ס עורך בקרות שכר חודשיות על פי הדוחות הבאים:</p>
+                <ul>
+                    <li>דוח ברוטו-נטו</li>
+                    <li>השוואה חודשית בין נתוני חודש נוכחי לחודש קודם או לחודש מקביל בשנה קודמת</li>
+                    <li>שינויים בשכר</li>
+                    <li>דוח תמחיר</li>
+                    <li>חשבונות בנקים כפולים</li>
+                </ul>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="q4" value="yes" required>
+                        כן
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="q4" value="no">
+                        לא
+                    </label>
+                </div>
+                <div class="follow-up" data-show-on="no">
+                    <label>נא לפרט אילו דוחות חסרים:</label>
+                    <textarea required></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <p>5. האם תשלום השכר נעשה עד ליום הקובע (ולא מאוחר מכך)?</p>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="q5" value="yes" required>
+                        כן
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="q5" value="no">
+                        לא
+                    </label>
+                </div>
+                <div class="follow-up" data-show-on="no">
+                    <label>נא לפרט את הסיבות לעיכוב:</label>
+                    <textarea required></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <p>6. האם עד ה-15 לכל חודש מכינים דוח לביטוח לאומי עבור החודש הקודם, והתשלום מתבצע במועד?</p>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="q6" value="yes" required>
+                        כן
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="q6" value="no">
+                        לא
+                    </label>
+                </div>
+                <div class="follow-up" data-show-on="no">
+                    <label>נא לפרט:</label>
+                    <textarea required></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <p>7. האם עד ה-15 לכל חודש מכינים דוח למס הכנסה עבור החודש הקודם, והתשלום מתבצע במועד?</p>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="q7" value="yes" required>
+                        כן
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="q7" value="no">
+                        לא
+                    </label>
+                </div>
+                <div class="follow-up" data-show-on="no">
+                    <label>נא לפרט:</label>
+                    <textarea required></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <p>8. האם עד ה-15 לחודש מכינים דוח לקופות פנסיה, גמל והשתלמות עבור החודש הקודם, והתשלום מועבר במועד?</p>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="q8" value="yes" required>
+                        כן
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="q8" value="no">
+                        לא
+                    </label>
+                </div>
+                <div class="follow-up" data-show-on="no">
+                    <label>נא לפרט:</label>
+                    <textarea required></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <p>9. האם חשבת השכר מוודאת שהתשלום החודשי לקרן פנסיה ופיצויים תואם את ההתחייבות החודשית?</p>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="q9" value="yes" required>
+                        כן
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="q9" value="no">
+                        לא
+                    </label>
+                </div>
+                <div class="follow-up" data-show-on="no">
+                    <label>נא לפרט:</label>
+                    <textarea required></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <p>10. האם מורשי החתימה מאשרים בחתימתם את העברת השכר לעובדים לאחר אישור המנהל?</p>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="q10" value="yes" required>
+                        כן
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="q10" value="no">
+                        לא
+                    </label>
+                </div>
+                <div class="follow-up" data-show-on="no">
+                    <label>נא לפרט:</label>
+                    <textarea required></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <p>11. בתשלום במס"ב - האם דוח הנטו לבנקים מועבר לאישור מורשי החתימה וחתימתם ניתנת על כל עמוד בדוח?</p>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="q11" value="yes" required>
+                        כן
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="q11" value="no">
+                        לא
+                    </label>
+                </div>
+                <div class="follow-up" data-show-on="no">
+                    <label>נא לפרט:</label>
+                    <textarea required></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <p>12. האם חשבת השכר עורכת בדיקה להתאמת הסכומים שהועברו לסכומים שאושרו על ידי מורשי החתימה?</p>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="q12" value="yes" required>
+                        כן
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="q12" value="no">
+                        לא
+                    </label>
+                </div>
+                <div class="follow-up" data-show-on="no">
+                    <label>נא לפרט:</label>
+                    <textarea required></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <p>13. האם חשבת השכר מעבירה את דוח הנטו החתום לבנק לביצוע ההעברות?</p>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="q13" value="yes" required>
+                        כן
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="q13" value="no">
+                        לא
+                    </label>
+                </div>
+                <div class="follow-up" data-show-on="no">
+                    <label>נא לפרט:</label>
+                    <textarea required></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <p>14. האם חשבת השכר עורכת פקודת יומן להעברת השכר במערכת הנהלת החשבונות?</p>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="q14" value="yes" required>
+                        כן
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="q14" value="no">
+                        לא
+                    </label>
+                </div>
+                <div class="follow-up" data-show-on="no">
+                    <label>נא לפרט:</label>
+                    <textarea required></textarea>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="submit-button">
+                    <i class="fas fa-save"></i>
+                    שמור שאלון
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

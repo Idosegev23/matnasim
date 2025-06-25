@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שאלון אישורים ותעודות</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-content">
+            <a href="index.html" class="back-button">
+                <i class="fas fa-arrow-right"></i>
+                חזרה לדף הראשי
+            </a>
+            <div class="questionnaire-progress">
+                <span class="progress-label">התקדמות בשאלון:</span>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <span class="progress-text">0%</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>שאלון אישורים ותעודות</h1>
+        
+        <form id="registrationForm">
+            <section class="questionnaire-section">
+                <h2>אישורי הפעלה</h2>
+
+                <div class="question-group">
+                    <p>1. האם קיים אישור הפעלה בתוקף מהרשות המקומית?</p>
+                    <div class="info-text">נדרש אישור הפעלה תקף לשנת הפעילות הנוכחית</div>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q1" value="yes" required>
+                            כן, קיים אישור בתוקף
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q1" value="no">
+                            לא
+                        </label>
+                    </div>
+                    <div class="follow-up" data-show-on="no">
+                        <label>נא לפרט מדוע אין אישור בתוקף:</label>
+                        <textarea required></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>2. האם קיים אישור ניהול תקין בתוקף?</p>
+                    <div class="info-text">נדרש אישור ניהול תקין מרשם העמותות לשנה הנוכחית</div>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q2" value="yes" required>
+                            כן, קיים אישור בתוקף
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q2" value="no">
+                            לא
+                        </label>
+                    </div>
+                    <div class="follow-up" data-show-on="no">
+                        <label>נא לפרט את הסיבה להיעדר האישור:</label>
+                        <textarea required></textarea>
+                    </div>
+                </div>
+
+                <h2>רישיונות והיתרים</h2>
+
+                <div class="question-group">
+                    <p>3. האם קיימים כל הרישיונות הנדרשים להפעלת חוגים?</p>
+                    <div class="info-text">נדרשים רישיונות עסק, אישורי בטיחות והיתרים מיוחדים בהתאם לסוג החוג</div>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q3" value="yes" required>
+                            כן, כל הרישיונות בתוקף
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q3" value="no">
+                            לא
+                        </label>
+                    </div>
+                    <div class="follow-up" data-show-on="no">
+                        <label>נא לפרט אילו רישיונות חסרים:</label>
+                        <textarea required></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>4. האם קיימים אישורי בטיחות שנתיים למתקנים?</p>
+                    <div class="info-text">נדרשים אישורי בטיחות תקפים לכל המתקנים במרכז</div>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q4" value="yes" required>
+                            כן, כל האישורים בתוקף
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q4" value="no">
+                            לא
+                        </label>
+                    </div>
+                    <div class="follow-up" data-show-on="no">
+                        <label>נא לפרט אילו אישורים חסרים:</label>
+                        <textarea required></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <div class="form-actions">
+                <button type="button" class="save-button">
+                    <i class="fas fa-save"></i>
+                    שמור תשובות
+                </button>
+                <button type="submit" class="submit-button">
+                    <i class="fas fa-check"></i>
+                    סיים שאלון
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

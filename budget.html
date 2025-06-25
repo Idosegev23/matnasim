@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שאלון הכנת וניהול תקציב המתנ"ס</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-content">
+            <div class="nav-right">
+                <a href="index.html" class="back-button">
+                    <i class="fas fa-arrow-right"></i>
+                    חזרה לדף הראשי
+                </a>
+                <div class="questionnaire-title">
+                    <i class="fas fa-chart-pie"></i>
+                    שאלון תקציב
+                </div>
+            </div>
+            <div class="questionnaire-progress">
+                <span class="progress-label">התקדמות השאלון:</span>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <span class="progress-text">0%</span>
+            </div>
+            <div class="questionnaires-nav">
+                <button type="button" class="nav-toggle">
+                    <i class="fas fa-list"></i>
+                    מעבר לשאלון אחר
+                </button>
+                <div class="nav-menu">
+                    <a href="hr_management.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        כוח אדם והנהלה
+                    </a>
+                    <a href="inventory.html" class="nav-item">
+                        <i class="fas fa-boxes"></i>
+                        ניהול מלאי
+                    </a>
+                    <a href="financial_management.html" class="nav-item">
+                        <i class="fas fa-coins"></i>
+                        ניהול כספי
+                    </a>
+                    <a href="salary.html" class="nav-item">
+                        <i class="fas fa-money-check-alt"></i>
+                        שכר ותשלומים
+                    </a>
+                    <a href="accounting.html" class="nav-item">
+                        <i class="fas fa-calculator"></i>
+                        הנהלת חשבונות
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <form id="budgetForm">
+            <section class="questionnaire-section">
+                <div class="section-header">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <h2>הכנת תקציב למתנ"ס</h2>
+                </div>
+
+                <div class="info-text">
+                    <i class="fas fa-info-circle"></i>
+                    <span>חשוב לנהל את תקציב המתנ"ס באופן מקצועי ומסודר. השאלון יעזור לבחון את תהליכי הכנת וניהול התקציב.</span>
+                </div>
+
+                <div class="question-group">
+                    <p>1. האם נקבעה מדיניות המתנ"ס לשנה הקרובה בהנהלת המתנ"ס?</p>
+                    <div class="info-text">
+                        <i class="fas fa-info-circle"></i>
+                        קביעת מדיניות ברורה חיונית לתכנון תקציבי מדויק
+                    </div>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q1" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q1" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט:</label>
+                        <textarea name="q1_text" placeholder="פרט את הסיבות לאי קביעת מדיניות..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>2. האם השתתפות הרשות ומשרדי הממשלה בתקציב המתנ"ס קטנה מ-50% (רלוונטי לעמותה מעין עירונית)?</p>
+                    <div class="info-text">
+                        <i class="fas fa-info-circle"></i>
+                        יש לוודא את היחס הנכון בין מקורות המימון השונים
+                    </div>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q2" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q2" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט את אחוז ההשתתפות:</label>
+                        <textarea name="q2_text" placeholder="ציין את אחוז ההשתתפות המדויק..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>3. האם התקציב נערך באמצעות תוכנה ייעודית (כגון: תכנת ת.מ.ר של החברה)?</p>
+                    <div class="info-text">
+                        <i class="fas fa-info-circle"></i>
+                        שימוש בתוכנה ייעודית מסייע בניהול תקציבי מדויק ומסודר
+                    </div>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q3" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q3" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט כיצד נערך התקציב:</label>
+                        <textarea name="q3_text" placeholder="תאר את שיטת עריכת התקציב הנוכחית..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>4. האם התקציב נערך על בסיס חודשי ריאלי לכל פעילות?</p>
+                    <div class="info-text">
+                        <i class="fas fa-info-circle"></i>
+                        תכנון חודשי מפורט מאפשר מעקב ובקרה טובים יותר
+                    </div>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q4" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q4" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט:</label>
+                        <textarea name="q4_text" placeholder="הסבר כיצד נערך התכנון התקציבי..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>5. האם התקציב כולל השוואה לתקציב וצפי ביצוע שנה קודמת?</p>
+                    <div class="info-text">
+                        <i class="fas fa-info-circle"></i>
+                        השוואה לשנים קודמות חיונית לתכנון מדויק ולמידה מניסיון
+                    </div>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q5" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q5" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט:</label>
+                        <textarea name="q5_text" placeholder="הסבר כיצד מתבצעת ההשוואה..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>6. האם הועברה הצעת התקציב בצירוף הסברים לחברי ההנהלה, למא"ז ולבקר הכספי לפחות שבוע לפני הדיון בהנהלה?</p>
+                    <div class="info-text">
+                        <i class="fas fa-info-circle"></i>
+                        העברת החומר מראש מאפשרת דיון מעמיק ומקצועי יותר
+                    </div>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q6" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q6" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט:</label>
+                        <textarea name="q6_text" placeholder="הסבר מתי ואיך הועבר החומר..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>7. האם התקציב אושר על ידי ההנהלה (ובעמותות מעין עירוניות גם במועצת העיר)?</p>
+                    <div class="info-text">
+                        <i class="fas fa-info-circle"></i>
+                        אישור התקציב בגורמים המוסמכים הוא חובה חוקית
+                    </div>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q7" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q7" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט:</label>
+                        <textarea name="q7_text" placeholder="פרט את סטטוס האישורים..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>8. האם מתבצע עדכון תקציב במהלך השנה?</p>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="q8" value="yes" required>
+                            <span>כן</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="q8" value="no" required>
+                            <span>לא</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question-group conditional-question" data-depends-on="q8" data-show-on="yes">
+                    <p>9. האם עדכון התקציב עובר את כל תהליכי האישור הנדרשים?</p>
+                    <div class="info-text">
+                        <i class="fas fa-info-circle"></i>
+                        <span>יש לוודא כי כל עדכון תקציב מאושר על ידי הגורמים המוסמכים בהתאם לנהלים</span>
+                    </div>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="q9" value="yes" required>
+                            <span>כן</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="q9" value="no" required>
+                            <span>לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up" data-for="q9" data-show-on="no">
+                        <label>נא לפרט מדוע לא מתקבלים כל האישורים הנדרשים:</label>
+                        <textarea placeholder="פרט את הסיבות לחוסר באישורים ואת התהליכים החסרים"></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <div class="form-actions">
+                <div class="auto-save-status">
+                    <i class="fas fa-sync"></i>
+                    התשובות נשמרות אוטומטית
+                </div>
+                <button type="submit" class="submit-button">
+                    <i class="fas fa-check"></i>
+                    סיים שאלון
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

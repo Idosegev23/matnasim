@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שאלון ניהול מלאי - מתנ"ס</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-content">
+            <div class="nav-right">
+                <a href="index.html" class="back-button">
+                    <i class="fas fa-arrow-right"></i>
+                    חזרה לדף הראשי
+                </a>
+                <div class="questionnaire-title">
+                    <i class="fas fa-boxes"></i>
+                    שאלון ניהול מלאי
+                </div>
+            </div>
+            <div class="questionnaire-progress">
+                <span class="progress-label">התקדמות השאלון:</span>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <span class="progress-text">0%</span>
+            </div>
+            <div class="questionnaires-nav">
+                <button type="button" class="nav-toggle">
+                    <i class="fas fa-list"></i>
+                    מעבר לשאלון אחר
+                </button>
+                <div class="nav-menu">
+                    <a href="hr_management.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        כוח אדם והנהלה
+                    </a>
+                    <a href="budget.html" class="nav-item">
+                        <i class="fas fa-chart-pie"></i>
+                        תקציב
+                    </a>
+                    <a href="financial_management.html" class="nav-item">
+                        <i class="fas fa-coins"></i>
+                        ניהול כספי
+                    </a>
+                    <a href="salary.html" class="nav-item">
+                        <i class="fas fa-money-check-alt"></i>
+                        שכר ותשלומים
+                    </a>
+                    <a href="accounting.html" class="nav-item">
+                        <i class="fas fa-calculator"></i>
+                        הנהלת חשבונות
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <form id="inventoryForm">
+            <section class="questionnaire-section">
+                <div class="section-header">
+                    <i class="fas fa-clipboard-list"></i>
+                    <h2>רישום וניהול מלאי</h2>
+                </div>
+
+                <div class="info-text">
+                    <i class="fas fa-info-circle"></i>
+                    <span>חשוב לנהל את המלאי באופן מסודר ומאורגן. השאלון יעזור לבחון את תהליכי ניהול המלאי במתנ"ס.</span>
+                </div>
+
+                <div class="question-group">
+                    <p>1. האם רישום המלאי ממוחשב?</p>
+                    <div class="info-text">
+                        <i class="fas fa-info-circle"></i>
+                        מערכת ממוחשבת מאפשרת ניהול יעיל ומעקב מדויק אחר המלאי
+                    </div>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q1" value="yes" required>
+                            <span class="radio-text">כן, קיימת מערכת ממוחשבת לניהול המלאי</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q1" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט כיצד מתבצע רישום המלאי:</label>
+                        <textarea name="q1_text" placeholder="תאר את שיטת רישום המלאי הנוכחית, כולל כלים ותהליכים..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>2. האם מנוהל ספר מלאי?</p>
+                    <div class="info-text">
+                        <i class="fas fa-info-circle"></i>
+                        ספר המלאי צריך לכלול את כל פרטי הציוד והמלאי במתנ"ס, כולל מיקום, כמות ומצב
+                    </div>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q2" value="yes" required>
+                            <span class="radio-text">כן, מנוהל ספר מלאי מסודר</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q2" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט מדוע לא מנוהל ספר מלאי:</label>
+                        <textarea name="q2_text" placeholder="פרט את הסיבות לאי ניהול ספר מלאי ואת האתגרים בתהליך..."></textarea>
+                    </div>
+                </div>
+
+                <div class="section-header">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h2>טיפול בציוד חסר</h2>
+                </div>
+
+                <div class="info-text">
+                    <i class="fas fa-info-circle"></i>
+                    <span>חשוב לנהל מעקב מסודר אחר ציוד חסר ולטפל בו בהתאם לנהלים</span>
+                </div>
+
+                <div class="question-group">
+                    <p>3. האם נפתח כרטיס בהנהלת החשבונות לרישום ציוד ומלאי?</p>
+                    <div class="info-text">
+                        <i class="fas fa-info-circle"></i>
+                        כרטיס בהנהלת חשבונות מאפשר מעקב חשבונאי מסודר אחר הציוד והמלאי
+                    </div>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q4" value="yes" required>
+                            <span class="radio-text">כן, קיים כרטיס מסודר</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q4" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט כיצד מתבצע המעקב החשבונאי:</label>
+                        <textarea name="q4_text" placeholder="תאר את שיטת המעקב החשבונאי הנוכחית, כולל תדירות העדכונים..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>4. האם הציוד שנמצא חסר נגרע מהרישום בכרטסת?</p>
+                    <div class="info-text">
+                        <i class="fas fa-info-circle"></i>
+                        כולל: ציוד שנגנב, הושחת, נשבר וכדומה
+                    </div>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q5" value="yes" required>
+                            <span class="radio-text">כן, מתבצע עדכון שוטף של גריעת ציוד</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q5" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט כיצד מטופל ציוד חסר:</label>
+                        <textarea name="q5_text" placeholder="נא לפרט את תהליך הטיפול בציוד חסר..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>5. האם גריעת הציוד נעשית באישור בכתב מהמנהל בהסתמך על פרוטוקול ההנהלה?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q6" value="yes" required>
+                            <span class="radio-text">כן, קיים תהליך אישור מסודר</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q6" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט את תהליך אישור גריעת הציוד:</label>
+                        <textarea name="q6_text" placeholder="נא לפרט את תהליך האישור הנוכחי..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>6. האם המתנ"ס מגיש מיידית תלונה למשטרה במקרה של פריצה?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q7" value="yes" required>
+                            <span class="radio-text">כן, באופן מיידי</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q7" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט את הסיבות לאי הגשת תלונה מיידית:</label>
+                        <textarea name="q7_text" placeholder="נא לפרט את הסיבות..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>7. האם נערך בשלוחה דו"ח מלאי?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q8" value="yes" required>
+                            <span class="radio-text">כן, מתבצע דו"ח מלאי מסודר</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q8" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט כיצד מתבצע המעקב אחר המלאי בשלוחה:</label>
+                        <textarea name="q8_text" placeholder="נא לפרט את שיטת המעקב הנוכחית..."></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <div class="form-actions">
+                <div class="auto-save-status">
+                    <i class="fas fa-sync"></i>
+                    התשובות נשמרות אוטומטית
+                </div>
+                <button type="submit" class="submit-button">
+                    <i class="fas fa-check"></i>
+                    סיים שאלון
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

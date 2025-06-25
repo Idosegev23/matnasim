@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שאלון הערכת המרכז הקהילתי</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>שאלון להערכת המרכז הקהילתי - בינוי קהילה ותשתיות</h1>
+        
+        <form id="surveyForm" onsubmit="return validateForm(event)">
+            <section>
+                <h2>בינוי קהילה ותשתיות</h2>
+                
+                <div class="question-group">
+                    <p>האם נעשתה הכשרה להנהלת המרכז הקהילתי בנושא אסטרטגית החברה?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q1" value="yes"> כן</label>
+                        <label><input type="radio" name="q1" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q1" data-show-on="no">
+                        <p>נא לפרט מדוע לא נעשתה הכשרה:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם הנהלת המרכז הקהילתי שותפה בהגדרת מדיניות חברתית-קהילתית?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q2" value="yes"> כן</label>
+                        <label><input type="radio" name="q2" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q2" data-show-on="no">
+                        <p>נא לפרט מדוע ההנהלה לא שותפה:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם למנהל המרכז הקהילתי תכנית להגברת קהילתיות בצוות (כולל שגרות ניהול)?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q3" value="yes"> כן</label>
+                        <label><input type="radio" name="q3" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q3" data-show-on="no">
+                        <p>נא לפרט מדוע אין תכנית:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם למרכז הקהילתי רכז/ראש תחום קהילה במשרה מלאה?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q4" value="yes"> כן</label>
+                        <label><input type="radio" name="q4" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q4" data-show-on="no">
+                        <p>נא לפרט מדוע אין רכז קהילה במשרה מלאה:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם צוות המרכז הקהילתי בקיא בשפה הארגונית לתחום קהילה?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q5" value="yes"> כן</label>
+                        <label><input type="radio" name="q5" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q5" data-show-on="no">
+                        <p>נא לפרט מדוע הצוות לא בקיא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם המרכז הקהילתי ערך מיפוי ואבחון קהילתי?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q6" value="yes"> כן</label>
+                        <label><input type="radio" name="q6" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q6" data-show-on="no">
+                        <p>נא לפרט מדוע לא נערך מיפוי:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם בתכנית העבודה השנתית הוגדרו לפחות 5 יעדים חברתיים-קהילתיים משותפים?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q7" value="yes"> כן</label>
+                        <label><input type="radio" name="q7" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q7" data-show-on="no">
+                        <p>נא לפרט מדוע לא הוגדרו יעדים:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם למרכז הקהילתי תכנית להגברת קהילתיות במסגרות הפעילות השוטפת?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q8" value="yes"> כן</label>
+                        <label><input type="radio" name="q8" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q8" data-show-on="no">
+                        <p>נא לפרט מדוע אין תכנית:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם המרכז הקהילתי עבר בשנתיים האחרונות תהליך עומק לתחום בינוי קהילה/תשתיות?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q9" value="yes"> כן</label>
+                        <label><input type="radio" name="q9" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q9" data-show-on="no">
+                        <p>נא לפרט מדוע לא עבר תהליך עומק:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם למרכז הקהילתי מיפוי ואבחון הכולל אפיון הקשר עם כל הקבוצות ביישוב/בשכונה?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q10" value="yes"> כן</label>
+                        <label><input type="radio" name="q10" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q10" data-show-on="no">
+                        <p>נא לפרט מדוע אין מיפוי מקיף:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>התנדבות ומעורבות</h2>
+                
+                <div class="question-group">
+                    <p>האם יש איש צוות האחראי לתחום ההתנדבות והמעורבות במרכז הקהילתי?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q11" value="yes"> כן</label>
+                        <label><input type="radio" name="q11" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q11" data-show-on="no">
+                        <p>נא לפרט מדוע אין אחראי:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם המרכז הקהילתי מפעיל מערך מתנדבים ופעילים בשגרה של לפחות 100 תושבים?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q12" value="yes"> כן</label>
+                        <label><input type="radio" name="q12" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q12" data-show-on="no">
+                        <p>נא לפרט מדוע אין מערך מתנדבים מספק:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם למרכז הקהילתי קיים מערך פעילים ומתנדבים לשעת חירום?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q13" value="yes"> כן</label>
+                        <label><input type="radio" name="q13" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q13" data-show-on="no">
+                        <p>נא לפרט מדוע אין מערך חירום:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם המרכז הקהילתי מוביל או שותף לשולחן עגול יישובי לתחום התנדבות?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q14" value="yes"> כן</label>
+                        <label><input type="radio" name="q14" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q14" data-show-on="no">
+                        <p>נא לפרט מדוע אין שותפות בשולחן עגול:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם הנושא נדון בהנהלה הציבורית בשנה האחרונה?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q15" value="yes"> כן</label>
+                        <label><input type="radio" name="q15" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q15" data-show-on="no">
+                        <p>נא לפרט מדוע הנושא לא נדון:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם קיימת וועדת הנהלה בנושא?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q16" value="yes"> כן</label>
+                        <label><input type="radio" name="q16" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q16" data-show-on="no">
+                        <p>נא לפרט מדוע אין ועדת הנהלה:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם למרכז הקהילתי תכנית שנתית לקידום התנדבות ומעורבות חברתית?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q17" value="yes"> כן</label>
+                        <label><input type="radio" name="q17" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q17" data-show-on="no">
+                        <p>נא לפרט מדוע אין תכנית שנתית:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם המרכז הקהילתי קידם לפחות שלוש יוזמות קהילתיות בשנת הפעילות האחרונה?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q18" value="yes"> כן</label>
+                        <label><input type="radio" name="q18" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q18" data-show-on="no">
+                        <p>נא לפרט מדוע לא קודמו יוזמות:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם ניהול המתנדבים מבוצע באמצעות תוכנה לניהול מתנדבים?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q19" value="yes"> כן</label>
+                        <label><input type="radio" name="q19" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q19" data-show-on="no">
+                        <p>נא לפרט מדוע אין שימוש בתוכנה:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>זהויות בקהילה</h2>
+                
+                <div class="question-group">
+                    <p>למרכז הקהילתי יש מתנדבים ופעילים לתחום זהויות?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q20" value="yes"> כן</label>
+                        <label><input type="radio" name="q20" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q20" data-show-on="no">
+                        <p>נא לפרט מדוע אין מתנדבים לתחום זהויות:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם למרכז הקהילתי לוח שנה ארגוני הכולל לפחות 5 אירועים בוני קהילה?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q21" value="yes"> כן</label>
+                        <label><input type="radio" name="q21" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q21" data-show-on="no">
+                        <p>נא לפרט מדוע אין לוח שנה מתאים:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם המרכז הקהילתי מפעיל תכניות/יוזמות לקידום הקשר בין קבוצות אוכלוסייה שונות?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q22" value="yes"> כן</label>
+                        <label><input type="radio" name="q22" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q22" data-show-on="no">
+                        <p>נא לפרט מדוע אין תכניות לקידום קשרים:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם המרכז הקהילתי מעורב או מוביל חג יישוב בקהילתו?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q23" value="yes"> כן</label>
+                        <label><input type="radio" name="q23" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q23" data-show-on="no">
+                        <p>נא לפרט מדוע אין מעורבות בחג יישוב:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם למרכז הקהילתי קשר מקצועי עם המחלקה לזהויות/ארגוני זהות אחרים?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q24" value="yes"> כן</label>
+                        <label><input type="radio" name="q24" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q24" data-show-on="no">
+                        <p>נא לפרט מדוע אין קשר מקצועי:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <button type="submit">שלח שאלון</button>
+        </form>
+    </div>
+</body>
+</html> 

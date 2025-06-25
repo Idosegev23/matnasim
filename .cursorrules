@@ -1,0 +1,57 @@
+# Matnasim Questionnaire System - Project Intelligence
+
+## Critical Current Issues
+- **AUTHENTICATION BLOCKER**: All API routes fail with "Invalid token" error at `verifyToken` function
+- Issue occurs in `/api/dashboard/manager`, `/api/questionnaire/[category]/answers`, and likely all authenticated routes
+- Frontend-backend authentication flow is broken
+
+## User Preferences
+- **HEBREW RESPONSES REQUIRED**: All my responses to the user must be in Hebrew
+- **ENGLISH UI ONLY**: All application interface text (buttons, labels, messages, UI components) must be in English - never Hebrew
+- This is a strict requirement that was explicitly corrected by the user
+
+## Project Structure Patterns
+- Next.js 14 with TypeScript
+- API routes in `/src/app/api/` structure
+- JWT authentication with `jose` library and `bcryptjs`
+- Supabase as backend database
+- Role-based access: admin and manager users
+- Special developer user (userId: 'developer') for testing
+
+## Authentication Architecture
+- JWT tokens with Bearer authentication
+- Token extraction from `Authorization` header
+- `verifyToken()` and `extractTokenFromHeaders()` functions in `/src/lib/auth.ts`
+- Role validation in API routes (`userType !== 'manager'`)
+
+## Database Schema (Supabase)
+Key tables: users, questionnaires, invitations, questionnaire_completions, answers
+Important fields: manager_email, progress_percentage, is_completed, deadline
+
+## Development Workflow
+- Uses npm run dev on port 3000
+- .env.local contains JWT_SECRET and Supabase config
+- TypeScript strict mode enabled
+- Legacy HTML files exist alongside Next.js app
+
+## Known Technical Patterns
+- API routes always check authentication first
+- Progress tracking through percentage completion
+- Questionnaire categories: accessibility, security, budget, accounting, inventory, salary, financial, hr, community, legal, general
+- Invitation-based workflow for managers
+
+## Debug Priorities
+When working on authentication:
+1. Check .env.local for JWT_SECRET
+2. Add console.logs to token extraction and verification
+3. Verify frontend token sending mechanism
+4. Test with developer user first
+
+## Memory Bank Location
+Project documentation stored in `/memory-bank/` with:
+- projectbrief.md (foundation)
+- systemPatterns.md (architecture)
+- activeContext.md (current issues)
+- techContext.md (stack)
+- productContext.md (business)
+- progress.md (status) 

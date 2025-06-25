@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שאלון למנהל מרכז קהילתי - ניהול כספי</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>שאלון למנהל מרכז קהילתי - ניהול כספי</h1>
+        
+        <form id="surveyForm" onsubmit="return validateForm(event)">
+            <section>
+                <h2>אמצעי תשלום לספקים</h2>
+                
+                <div class="question-group">
+                    <p>האם יש מדיניות ברורה לתשלום לספקים?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q1" value="yes"> כן</label>
+                        <label><input type="radio" name="q1" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q1" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם המרכז משתמש בהעברות בנקאיות כאמצעי תשלום עיקרי לספקים?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q2" value="yes"> כן</label>
+                        <label><input type="radio" name="q2" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q2" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם קיימת מערכת ממוחשבת לניהול תשלומים לספקים?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q3" value="yes"> כן</label>
+                        <label><input type="radio" name="q3" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q3" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם יש בקרה על תשלומים לספקים?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q4" value="yes"> כן</label>
+                        <label><input type="radio" name="q4" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q4" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם יש נוהל קבוע לתשלומים שוטפים?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q5" value="yes"> כן</label>
+                        <label><input type="radio" name="q5" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q5" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>ביטוח</h2>
+                
+                <div class="question-group">
+                    <p>האם למרכז יש כיסוי ביטוחי מתאים לכלל הפעילויות?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q6" value="yes"> כן</label>
+                        <label><input type="radio" name="q6" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q6" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם יש תהליך מסודר לטיפול בתביעות ביטוח?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q7" value="yes"> כן</label>
+                        <label><input type="radio" name="q7" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q7" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם המרכז נעזר ביועץ ביטוח מקצועי?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q8" value="yes"> כן</label>
+                        <label><input type="radio" name="q8" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q8" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם המשתתפים נדרשים להצהיר על ביטוח אישי לפעילויות?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q9" value="yes"> כן</label>
+                        <label><input type="radio" name="q9" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q9" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם קיים ביטוח למבנה המרכז עצמו?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q10" value="yes"> כן</label>
+                        <label><input type="radio" name="q10" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q10" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>רכישות</h2>
+                
+                <div class="question-group">
+                    <p>האם קיים תהליך אישור מסודר לרכישות במרכז?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q11" value="yes"> כן</label>
+                        <label><input type="radio" name="q11" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q11" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם יש הגבלה תקציבית על רכישות מסוימות?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q12" value="yes"> כן</label>
+                        <label><input type="radio" name="q12" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q12" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם מתנהלים מכרזים עבור רכישות גדולות?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q13" value="yes"> כן</label>
+                        <label><input type="radio" name="q13" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q13" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם מתבצעת בקרת איכות על המוצרים והשירותים שנרכשו?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q14" value="yes"> כן</label>
+                        <label><input type="radio" name="q14" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q14" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם קיים מעקב אחר מלאי הציוד במרכז?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q15" value="yes"> כן</label>
+                        <label><input type="radio" name="q15" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q15" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>רישום וגביה</h2>
+                
+                <div class="question-group">
+                    <p>האם הרישום לפעילויות מתבצע באופן מקוון?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q16" value="yes"> כן</label>
+                        <label><input type="radio" name="q16" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q16" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם הגבייה עבור פעילויות מתבצעת מראש?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q17" value="yes"> כן</label>
+                        <label><input type="radio" name="q17" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q17" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם קיימות הנחות או הסדרי תשלומים לאוכלוסיות מסוימות?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q18" value="yes"> כן</label>
+                        <label><input type="radio" name="q18" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q18" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם יש מדיניות לטיפול בחובות או אי-תשלום?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q19" value="yes"> כן</label>
+                        <label><input type="radio" name="q19" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q19" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם קיימת אפשרות לפריסת תשלומים?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q20" value="yes"> כן</label>
+                        <label><input type="radio" name="q20" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q20" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>ניהול קופות קטנות</h2>
+                
+                <div class="question-group">
+                    <p>האם יש אחראי מוגדר לניהול הקופה הקטנה?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q21" value="yes"> כן</label>
+                        <label><input type="radio" name="q21" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q21" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם קיימת מגבלת סכום להוצאות מהקופה הקטנה?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q22" value="yes"> כן</label>
+                        <label><input type="radio" name="q22" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q22" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם מתבצע תיעוד מסודר של ההוצאות בקופה הקטנה?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q23" value="yes"> כן</label>
+                        <label><input type="radio" name="q23" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q23" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם מתקיימות ביקורות תקופתיות לניהול הקופה הקטנה?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q24" value="yes"> כן</label>
+                        <label><input type="radio" name="q24" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q24" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם יש תהליך מסודר להשלמת מזומנים בקופה הקטנה?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q25" value="yes"> כן</label>
+                        <label><input type="radio" name="q25" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q25" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <button type="submit">שלח שאלון</button>
+        </form>
+    </div>
+</body>
+</html> 

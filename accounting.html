@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שאלון הנהלת חשבונות - מתנ"ס</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-content">
+            <div class="nav-right">
+                <a href="index.html" class="back-button">
+                    <i class="fas fa-arrow-right"></i>
+                    חזרה לדף הראשי
+                </a>
+                <div class="questionnaire-title">
+                    <i class="fas fa-calculator"></i>
+                    שאלון הנהלת חשבונות
+                </div>
+            </div>
+            <div class="questionnaire-progress">
+                <span class="progress-label">התקדמות השאלון:</span>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <span class="progress-text">0%</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <form id="accountingForm">
+            <!-- סגירת ופתיחת שנה -->
+            <section class="questionnaire-section">
+                <div class="section-header">
+                    <i class="fas fa-calendar-check"></i>
+                    <h2>סגירת ופתיחת שנה</h2>
+                </div>
+
+                <div class="info-text">
+                    <i class="fas fa-info-circle"></i>
+                    <span>חשוב לוודא שכל תהליכי סגירת ופתיחת השנה מתבצעים בהתאם לנהלים</span>
+                </div>
+
+                <!-- שאלה 1 -->
+                <div class="question-group">
+                    <p>1. האם הועברו יתרות סגירה משנה קודמת?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q1" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q1" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט מדוע לא הועברו היתרות:</label>
+                        <textarea name="q1_text"></textarea>
+                    </div>
+                </div>
+
+                <!-- שאלה 2 -->
+                <div class="question-group">
+                    <p>2. האם הושלמו כל תהליכי סגירת שנה ופתיחת שנה?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q2" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q2" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט אילו תהליכים טרם הושלמו:</label>
+                        <textarea name="q2_text"></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <!-- התאמות ובקרה -->
+            <section class="questionnaire-section">
+                <div class="section-header">
+                    <i class="fas fa-balance-scale"></i>
+                    <h2>התאמות ובקרה</h2>
+                </div>
+
+                <div class="info-text">
+                    <i class="fas fa-info-circle"></i>
+                    <span>יש לבצע התאמות בנקים באופן שוטף ולוודא התאמה בין המערכות השונות</span>
+                </div>
+
+                <!-- שאלה 3 -->
+                <div class="question-group">
+                    <p>3. האם מתבצעות התאמות בנקים באופן שוטף?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q3" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q3" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט את תדירות ביצוע התאמות הבנקים:</label>
+                        <textarea name="q3_text"></textarea>
+                    </div>
+                </div>
+
+                <!-- שאלה 4 -->
+                <div class="question-group">
+                    <p>4. האם קיימת התאמה בין מערכת הגבייה למערכת הנהלת החשבונות?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q4" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q4" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט את הפערים בין המערכות:</label>
+                        <textarea name="q4_text"></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ממשקים ואוטומציה -->
+            <section class="questionnaire-section">
+                <div class="section-header">
+                    <i class="fas fa-network-wired"></i>
+                    <h2>ממשקים ואוטומציה</h2>
+                </div>
+
+                <div class="info-text">
+                    <i class="fas fa-info-circle"></i>
+                    <span>יש לוודא שכל הממשקים בין המערכות פועלים כראוי ומתבצעת בקרה על העברת הנתונים</span>
+                </div>
+
+                <!-- שאלה 5 -->
+                <div class="question-group">
+                    <p>5. האם מתבצע עיבוד אוטומטי של דפי הבנק?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q5" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q5" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט את אופן העיבוד הנוכחי:</label>
+                        <textarea name="q5_text"></textarea>
+                    </div>
+                </div>
+
+                <!-- שאלה 6 -->
+                <div class="question-group">
+                    <p>6. האם מתבצעות התאמות בין המערכות לאחר העברות?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q6" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q6" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט את תהליך ההתאמה:</label>
+                        <textarea name="q6_text"></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <!-- בקרה ומעקב -->
+            <section class="questionnaire-section">
+                <div class="section-header">
+                    <i class="fas fa-search-dollar"></i>
+                    <h2>בקרה ומעקב</h2>
+                </div>
+
+                <div class="info-text">
+                    <i class="fas fa-info-circle"></i>
+                    <span>יש לבצע בקרה שוטפת על חייבים וזכאים ולוודא התאמה בין הכרטסות</span>
+                </div>
+
+                <!-- שאלה 7 -->
+                <div class="question-group">
+                    <p>7. האם מתבצעת התאמת חייבים וזכאים שנתית?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q7" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q7" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט את תהליך ההתאמה:</label>
+                        <textarea name="q7_text"></textarea>
+                    </div>
+                </div>
+
+                <!-- שאלה 8 -->
+                <div class="question-group">
+                    <p>8. האם מתבצעת בקרה על חובות מסופקים?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q8" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q8" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט את אופן הטיפול בחובות מסופקים:</label>
+                        <textarea name="q8_text"></textarea>
+                    </div>
+                </div>
+
+                <!-- שאלה 9 -->
+                <div class="question-group">
+                    <p>9. האם מתבצעת בקרה על הוצאות קבועות?</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q9" value="yes" required>
+                            <span class="radio-text">כן</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q9" value="no">
+                            <span class="radio-text">לא</span>
+                        </label>
+                    </div>
+                    <div class="follow-up">
+                        <label>נא לפרט את אופן הבקרה על ההוצאות הקבועות:</label>
+                        <textarea name="q9_text"></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <div class="form-actions">
+                <div class="auto-save-status">
+                    <i class="fas fa-sync"></i>
+                    התשובות נשמרות אוטומטית
+                </div>
+                <button type="submit" class="submit-button">
+                    <i class="fas fa-check"></i>
+                    סיים שאלון
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

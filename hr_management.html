@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שאלון כוח אדם והנהלה</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>שאלון כוח אדם והנהלה</h1>
+        
+        <form id="surveyForm" onsubmit="return validateForm(event)">
+            <section>
+                <h2>כוח אדם</h2>
+                
+                <div class="question-group">
+                    <p>האם רישום נוכחות חל על כל העובדים?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q1" value="yes"> כן</label>
+                        <label><input type="radio" name="q1" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q1" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם הנוכחות משתקפת בתלוש השכר כמתחייב בחוק להגברת האכיפה?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q2" value="yes"> כן</label>
+                        <label><input type="radio" name="q2" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q2" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם קיימת מדיניות לביצוע שעות נוספות?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q3" value="yes"> כן</label>
+                        <label><input type="radio" name="q3" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q3" data-show-on="yes">
+                        <p>נא לציין את סוג המדיניות (איסור מוחלט/אישור חלקי/היתר מלא):</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם האיסור מתועד בתיק האישי של העובד?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q4" value="yes"> כן</label>
+                        <label><input type="radio" name="q4" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q4" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם מבוצעת התאמה בין הדיווח למכסת שעות המאושרות לעובד?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q5" value="yes"> כן</label>
+                        <label><input type="radio" name="q5" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q5" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם מערכת הנוכחות מבצעת השלמת שעות נוכחות ללא חובת דיווח יציאה?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q6" value="yes"> כן</label>
+                        <label><input type="radio" name="q6" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q6" data-show-on="yes">
+                        <p>נא לפרט כיצד:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>יש מדיניות מחייבת לגובה ימי החופשה השנתיים הניתנים לעובדים?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q7" value="yes"> כן</label>
+                        <label><input type="radio" name="q7" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q7" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>מספר ימי החופשה השנתיים נקבע בהתאם לחוק?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q8" value="yes"> כן</label>
+                        <label><input type="radio" name="q8" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q8" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>נקבעה מדיניות לגבי צבירה שלילית של ימי חופשה?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q9" value="yes"> כן</label>
+                        <label><input type="radio" name="q9" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q9" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם ניתן אישור בכתב בדבר בקשת העובד ליציאה לחופשה?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q10" value="yes"> כן</label>
+                        <label><input type="radio" name="q10" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q10" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>נקבעה מדיניות בהנהלת המתנ"ס בדבר מתן ימי בחירה והצהרה לעובדי המתנ"ס?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q11" value="yes"> כן</label>
+                        <label><input type="radio" name="q11" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q11" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>מספר ימי המחלה השנתיים נקבע בהתאם לחוק?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q12" value="yes"> כן</label>
+                        <label><input type="radio" name="q12" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q12" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>המדיניות בדבר ימי המחלה הניתנים לעובד אושרה בישיבת הנהלת העמותה?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q13" value="yes"> כן</label>
+                        <label><input type="radio" name="q13" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q13" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם הועדה קובעת את תנאי ההעסקה וקידומם של העובדים?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q14" value="yes"> כן</label>
+                        <label><input type="radio" name="q14" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q14" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם הוועדה מאשרת שינויים בשכר העובדים?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q15" value="yes"> כן</label>
+                        <label><input type="radio" name="q15" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q15" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם האצילה ההנהלה למנהל הנוכחי סמכויות לקבלת עובדים?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q16" value="yes"> כן</label>
+                        <label><input type="radio" name="q16" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q16" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם האצלה זו נרשמה בפרוטוקול ישיבת ההנהלה?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q17" value="yes"> כן</label>
+                        <label><input type="radio" name="q17" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q17" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם אתם פועלים עפ"י חוק הודעה לעובד ביחס למועמדים לכל תפקיד?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q18" value="yes"> כן</label>
+                        <label><input type="radio" name="q18" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q18" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>ההסכם נחתם על ידי מורשי החתימה במתנ"ס והעובד?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q19" value="yes"> כן</label>
+                        <label><input type="radio" name="q19" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q19" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם החוזים ממוחשבים ומוקלדים?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q20" value="yes"> כן</label>
+                        <label><input type="radio" name="q20" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q20" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>אישור העסקה ממשטרת ישראל בדבר היעדר עבריינות מין?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q21" value="yes"> כן</label>
+                        <label><input type="radio" name="q21" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q21" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם קיימת הלימה בין חוזה ההעסקה לתלוש השכר?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q22" value="yes"> כן</label>
+                        <label><input type="radio" name="q22" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q22" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם קיימים במתנ"ס עובדי צינור?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q23" value="yes"> כן</label>
+                        <label><input type="radio" name="q23" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q23" data-show-on="yes">
+                        <p>נא לפרט:</p>
+                        <p>תחום עיסוק:</p>
+                        <textarea name="field_of_work"></textarea>
+                        <p>כמות עובדים:</p>
+                        <textarea name="number_of_employees"></textarea>
+                        <p>האם נתקבלה חוות דעת משפטית לגבי העסקתם?</p>
+                        <textarea name="legal_opinion"></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>הנהלה</h2>
+                
+                <div class="question-group">
+                    <p>האם נקבעו ישיבות מראש לשנת העבודה?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q24" value="yes"> כן</label>
+                        <label><input type="radio" name="q24" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q24" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>קיום קוורום בישיבות (עמותות - 5 מינימום, סוכנותי - 3 מינימום)?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q25" value="yes"> כן</label>
+                        <label><input type="radio" name="q25" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q25" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם נערך פרוטוקול בגין כל ישיבה?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q26" value="yes"> כן</label>
+                        <label><input type="radio" name="q26" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q26" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם נערך פרוטוקול מסודר לכל ישיבת ועדת כוח-אדם?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q27" value="yes"> כן</label>
+                        <label><input type="radio" name="q27" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q27" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם הפרוטוקול נשמר בקומקס?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q28" value="yes"> כן</label>
+                        <label><input type="radio" name="q28" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q28" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם היו"ר ההנהלה חותם על כל הפרוטוקולים?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q29" value="yes"> כן</label>
+                        <label><input type="radio" name="q29" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q29" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם ההנהלה אישרה את תקציב המתנ"ס?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q30" value="yes"> כן</label>
+                        <label><input type="radio" name="q30" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q30" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם הדוחות הכספיים אושרו במועד (סוכנותי עד סוף יוני, עמותות - עד סוף אפריל)?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q31" value="yes"> כן</label>
+                        <label><input type="radio" name="q31" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q31" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>קיומו של פנקס חברי עמותה/הנהלה מעודכן?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q32" value="yes"> כן</label>
+                        <label><input type="radio" name="q32" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q32" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם נערך מעקב אחר יישום ההחלטות?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q33" value="yes"> כן</label>
+                        <label><input type="radio" name="q33" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q33" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם חברי ההנהלה קיבלו השתלמות מקצועית בשנה האחרונה?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q34" value="yes"> כן</label>
+                        <label><input type="radio" name="q34" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q34" data-show-on="no">
+                        <p>נא לפרט מדוע לא:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <p>האם להנהלה וועדות רשות?</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="q35" value="yes"> כן</label>
+                        <label><input type="radio" name="q35" value="no"> לא</label>
+                    </div>
+                    <div class="follow-up" data-for="q35" data-show-on="yes">
+                        <p>נא לפרט אילו ועדות:</p>
+                        <textarea></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <button type="submit">שלח שאלון</button>
+        </form>
+    </div>
+</body>
+</html> 

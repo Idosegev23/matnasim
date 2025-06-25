@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מערכת שאלוני הערכה למתנ"ס</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-content">
+            <div class="overall-progress">
+                <span class="progress-label">התקדמות כללית</span>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="totalProgress"></div>
+                </div>
+                <span class="progress-percentage" id="totalProgressText">0%</span>
+            </div>
+            <div class="questionnaires-status" id="questionnairesStatus">
+                <!-- סטטוס השאלונים יתווסף דינמית -->
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>מערכת שאלוני הערכה למתנ"ס</h1>
+        
+        <section class="form-section">
+            <h2>פרטי המתנ"ס</h2>
+            <form id="personalDetailsForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="centerName">שם המתנ"ס</label>
+                        <input type="text" id="centerName" name="centerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="managerName">שם המנהל/ת</label>
+                        <input type="text" id="managerName" name="managerName" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">טלפון</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">דוא"ל</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="address">כתובת</label>
+                        <input type="text" id="address" name="address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">עיר</label>
+                        <input type="text" id="city" name="city" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="startYear">שנת התחלת ניהול המרכז הקהילתי</label>
+                    <input type="number" id="startYear" name="startYear" min="1980" max="2024" required>
+                </div>
+            </form>
+        </section>
+
+        <section class="questionnaires-section">
+            <h2>שאלונים</h2>
+            
+            <!-- ניהול ובקרה -->
+            <div class="category-section">
+                <h3><i class="fas fa-tasks"></i> ניהול ובקרה</h3>
+                <div class="grid-container">
+                    <a href="hr_management.html" class="questionnaire-card" data-questionnaire="hr">
+                        <div class="card-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4>כוח אדם</h4>
+                        <div class="progress-indicator">
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                            <span class="progress-text">0%</span>
+                        </div>
+                        <span class="status-badge">טרם הושלם</span>
+                    </a>
+
+                    <a href="budget.html" class="questionnaire-card" data-questionnaire="budget">
+                        <div class="card-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h4>תקציב</h4>
+                        <div class="progress-indicator">
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                            <span class="progress-text">0%</span>
+                        </div>
+                        <span class="status-badge">טרם הושלם</span>
+                    </a>
+
+                    <a href="financial_management.html" class="questionnaire-card" data-questionnaire="financial">
+                        <div class="card-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <h4>ניהול כספי</h4>
+                        <div class="progress-indicator">
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                            <span class="progress-text">0%</span>
+                        </div>
+                        <span class="status-badge">טרם הושלם</span>
+                    </a>
+
+                    <a href="salary.html" class="questionnaire-card" data-questionnaire="salary">
+                        <div class="card-icon">
+                            <i class="fas fa-money-check-alt"></i>
+                        </div>
+                        <h4>שכר ותשלומים</h4>
+                        <div class="progress-indicator">
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                            <span class="progress-text">0%</span>
+                        </div>
+                        <span class="status-badge">טרם הושלם</span>
+                    </a>
+
+                    <a href="accounting.html" class="questionnaire-card" data-questionnaire="accounting">
+                        <div class="card-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <h4>הנהלת חשבונות</h4>
+                        <div class="progress-indicator">
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                            <span class="progress-text">0%</span>
+                        </div>
+                        <span class="status-badge">טרם הושלם</span>
+                    </a>
+
+                    <a href="sgarot.html" class="questionnaire-card" data-questionnaire="sgarot">
+                        <div class="card-icon">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <h4>שגרות ניהול</h4>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                        <div class="progress-text">0%</div>
+                        <div class="status-badge">טרם הושלם</div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- תפעול -->
+            <div class="category-section">
+                <h3><i class="fas fa-cogs"></i> תפעול</h3>
+                <div class="grid-container">
+                    <a href="inventory.html" class="questionnaire-card" data-questionnaire="inventory">
+                        <div class="card-icon">
+                            <i class="fas fa-boxes"></i>
+                        </div>
+                        <h4>ניהול מלאי</h4>
+                        <div class="progress-indicator">
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                            <span class="progress-text">0%</span>
+                        </div>
+                        <span class="status-badge">טרם הושלם</span>
+                    </a>
+
+                    <a href="registration.html" class="questionnaire-card" data-questionnaire="registration">
+                        <div class="card-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h4>אישורים ותעודות</h4>
+                        <div class="progress-indicator">
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                            <span class="progress-text">0%</span>
+                        </div>
+                        <span class="status-badge">טרם הושלם</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- תכניות ופעילויות -->
+            <div class="category-section">
+                <h3><i class="fas fa-calendar-alt"></i> תכניות ופעילויות</h3>
+                <div class="grid-container">
+                    <a href="youth.html" class="questionnaire-card" data-questionnaire="youth">
+                        <div class="card-icon">
+                            <i class="fas fa-child"></i>
+                        </div>
+                        <h4>תכניות ילדים ונוער</h4>
+                        <div class="progress-indicator">
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                            <span class="progress-text">0%</span>
+                        </div>
+                        <span class="status-badge">טרם הושלם</span>
+                    </a>
+
+                    <a href="community.html" class="questionnaire-card" data-questionnaire="community">
+                        <div class="card-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <h4>קהילה</h4>
+                        <div class="progress-indicator">
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                            <span class="progress-text">0%</span>
+                        </div>
+                        <span class="status-badge">טרם הושלם</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- משפטי ובטיחות -->
+            <div class="category-section">
+                <h3><i class="fas fa-shield-alt"></i> משפטי ובטיחות</h3>
+                <div class="grid-container">
+                    <a href="legal.html" class="questionnaire-card" data-questionnaire="legal">
+                        <div class="card-icon">
+                            <i class="fas fa-gavel"></i>
+                        </div>
+                        <h4>משפטי</h4>
+                        <div class="progress-indicator">
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                            <span class="progress-text">0%</span>
+                        </div>
+                        <span class="status-badge">טרם הושלם</span>
+                    </a>
+
+                    <a href="security.html" class="questionnaire-card" data-questionnaire="security">
+                        <div class="card-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>בטיחות</h4>
+                        <div class="progress-indicator">
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                            <span class="progress-text">0%</span>
+                        </div>
+                        <span class="status-badge">טרם הושלם</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="summary-section">
+            <div class="summary-content">
+                <button type="button" id="submitAll" class="submit-button" disabled>
+                    <i class="fas fa-paper-plane"></i>
+                    שלח את כל השאלונים
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
