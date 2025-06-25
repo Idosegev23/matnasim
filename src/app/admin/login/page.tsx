@@ -46,12 +46,15 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow-md">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+    <div className="page-container">
+      <div className="card">
+        <div className="card-header">
+          <h2 className="card-title">
             כניסה לפאנל ניהול
           </h2>
+          <p className="card-subtitle">
+            מנהלים בכירים
+          </p>
         </div>
         
         <form onSubmit={handleSubmit}>
@@ -85,7 +88,7 @@ export default function AdminLoginPage() {
           </div>
 
           {error && (
-            <div className="error-message">
+            <div className="alert alert-danger">
               {error}
             </div>
           )}
@@ -93,7 +96,7 @@ export default function AdminLoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="btn-primary w-full"
+            className="btn btn-primary btn-full"
           >
             {loading ? 'מתחבר...' : 'כניסה'}
           </button>
