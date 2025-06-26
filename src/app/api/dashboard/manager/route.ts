@@ -78,38 +78,73 @@ export async function GET(request: NextRequest) {
       const answeredCount = responses?.filter(r => 
         q.questions?.some(question => question.id === r.question_id)
       ).length || 0
+      const progressPercentage = questionCount > 0 ? Math.round((answeredCount / questionCount) * 100) : 0
+
+      let status: 'not_started' | 'in_progress' | 'completed'
+      if (completion?.is_completed) {
+        status = 'completed'
+      } else if (answeredCount > 0) {
+        status = 'in_progress'
+      } else {
+        status = 'not_started'
+      }
 
       return {
         id: q.id,
         category: q.category,
         title: q.title,
         description: q.description,
+        year: new Date().getFullYear(),
+        progress_percentage: progressPercentage,
+        is_completed: completion?.is_completed || false,
+        completed_at: completion?.completed_at || null,
+        updated_at: completion?.updated_at || null,
+        question_count: questionCount,
+        answered_count: answeredCount,
+        estimated_minutes: Math.ceil(questionCount * 1.5),
+        status,
+        // Keep backward compatibility
         questionCount,
         answeredQuestions: answeredCount,
-        progress: questionCount > 0 ? Math.round((answeredCount / questionCount) * 100) : 0,
+        progress: progressPercentage,
         isCompleted: completion?.is_completed || false,
-        estimatedTime: Math.ceil(questionCount * 1.5) // 1.5 דקות לשאלה
+        estimatedTime: Math.ceil(questionCount * 1.5)
       }
     })
 
     console.log('✅ Manager dashboard data processed successfully')
+
+    const completedCount = processedQuestionnaires.filter(q => q.isCompleted).length
+    const inProgressCount = processedQuestionnaires.filter(q => q.progress > 0 && !q.isCompleted).length
+    const notStartedCount = processedQuestionnaires.filter(q => q.progress === 0).length
+    const totalQuestions = processedQuestionnaires.reduce((sum, q) => sum + q.questionCount, 0)
+    const answeredQuestions = processedQuestionnaires.reduce((sum, q) => sum + q.answeredQuestions, 0)
+    const overallProgress = totalQuestions > 0 ? Math.round((answeredQuestions / totalQuestions) * 100) : 0
+    const estimatedRemainingMinutes = processedQuestionnaires.reduce((sum, q) => {
+      const remaining = q.questionCount - q.answeredQuestions
+      return sum + (remaining * 1.5)
+    }, 0)
 
     return NextResponse.json({
       success: true,
       user: {
         name: user.full_name,
         email: user.email,
-        organization: user.organization_name
+        organization: user.organization_name,
+        user_type: user.user_type
       },
       questionnaires: processedQuestionnaires,
-      summary: {
-        totalQuestionnaires: processedQuestionnaires.length,
-        completedQuestionnaires: processedQuestionnaires.filter(q => q.isCompleted).length,
-        averageProgress: Math.round(
-          processedQuestionnaires.reduce((sum, q) => sum + q.progress, 0) / 
-          (processedQuestionnaires.length || 1)
-        )
-      }
+      stats: {
+        total: processedQuestionnaires.length,
+        completed: completedCount,
+        in_progress: inProgressCount,
+        not_started: notStartedCount,
+        overall_progress: overallProgress,
+        total_questions: totalQuestions,
+        answered_questions: answeredQuestions,
+        estimated_remaining_minutes: Math.round(estimatedRemainingMinutes)
+      },
+      year: new Date().getFullYear()
     })
 
   } catch (error) {
