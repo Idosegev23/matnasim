@@ -53,11 +53,15 @@ export async function POST(request: NextRequest) {
       }, { status: 409 })
     }
 
+    // Generate UUID for questionnaire_id (required field)
+    const defaultQuestionnaireId = crypto.randomUUID()
+    
     // Insert invitation into database - simple invitation to the system
     const { data, error } = await supabase
       .from('invitations')
       .insert({
         token: invitationToken,
+        questionnaire_id: defaultQuestionnaireId,
         manager_email: managerEmail.toLowerCase(),
         manager_name: managerName,
         organization_name: authResult.payload.organizationName || 'TriRoars Development',
