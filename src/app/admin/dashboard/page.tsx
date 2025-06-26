@@ -120,9 +120,9 @@ export default function AdminDashboardPage() {
           'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
-          email: inviteEmail,
-          deadline: inviteDeadline,
-          replaceExisting
+          questionnaireId: 1, // Default questionnaire ID - you may need to make this dynamic
+          managerEmail: inviteEmail,
+          managerName: inviteEmail.split('@')[0] // Extract name from email as fallback
         })
       })
 
