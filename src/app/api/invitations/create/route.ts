@@ -53,25 +53,11 @@ export async function POST(request: NextRequest) {
       }, { status: 409 })
     }
 
-    // Get a questionnaire ID for the invitation (using general category as default)
-    const { data: questionnaire } = await supabase
-      .from('questionnaires')
-      .select('id')
-      .eq('category', 'general')
-      .single()
-
-    if (!questionnaire?.id) {
-      console.log('❌ No questionnaire found, using null')
-    }
-
-    const questionnaireId = questionnaire?.id || null
-
-    // Insert invitation into database with correct schema
+    // Insert invitation into database - simple invitation to the system
     const { data, error } = await supabase
       .from('invitations')
       .insert({
         token: invitationToken,
-        questionnaire_id: questionnaireId,
         manager_email: managerEmail.toLowerCase(),
         manager_name: managerName,
         organization_name: authResult.payload.organizationName || 'TriRoars Development',
