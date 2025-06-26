@@ -21,55 +21,39 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Access denied - Admin only' }, { status: 403 })
     }
 
-    const { questionnaireId, managerEmail, managerName } = await request.json()
+    const { managerEmail, managerName, deadline } = await request.json()
 
-    if (!questionnaireId || !managerEmail || !managerName) {
+    if (!managerEmail || !managerName) {
       return NextResponse.json({ 
-        error: 'Missing required fields: questionnaireId, managerEmail, managerName' 
+        error: 'Missing required fields: managerEmail, managerName' 
       }, { status: 400 })
-    }
-
-    // בדיקה שהשאלון קיים - נחפש לפי ID או לפי קטגוריה
-    let questionnaire = null
-    let questionnaireError = null
-
-    // אם questionnaireId הוא מספר, נחפש לפי ID
-    if (!isNaN(Number(questionnaireId))) {
-      const result = await supabase
-        .from('questionnaires')
-        .select('id, title, category')
-        .eq('id', questionnaireId)
-        .single()
-      questionnaire = result.data
-      questionnaireError = result.error
-    } else {
-      // אחרת, נחפש לפי קטגוריה
-      const result = await supabase
-        .from('questionnaires')
-        .select('id, title, category')
-        .eq('category', questionnaireId)
-        .eq('is_active', true)
-        .single()
-      questionnaire = result.data
-      questionnaireError = result.error
-    }
-
-    if (questionnaireError || !questionnaire) {
-      console.log('❌ Questionnaire not found:', questionnaireError)
-      return NextResponse.json({ error: 'Questionnaire not found' }, { status: 404 })
     }
 
     // יצירת טוקן ייחודי להזמנה
     const token = crypto.randomBytes(32).toString('hex')
 
-    // שמירת ההזמנה במסד הנתונים
+    // בדיקה אם קיימת הזמנה קודמת למנהל זה
+    const { data: existingInvitation } = await supabase
+      .from('invitations')
+      .select('*')
+      .eq('manager_email', managerEmail)
+      .single()
+
+    if (existingInvitation) {
+      console.log('⚠️ Invitation already exists')
+      return NextResponse.json({ 
+        error: 'Invitation already exists for this manager' 
+      }, { status: 409 })
+    }
+
+    // שמירת ההזמנה במסד הנתונים - גישה לכל השאלונים
     const { data: invitation, error: invitationError } = await supabase
       .from('invitations')
       .insert({
         token,
-        questionnaire_id: questionnaire.id,
         manager_email: managerEmail,
         manager_name: managerName,
+        deadline: deadline || null,
         organization_name: decoded.organizationName || 'מתנ"ס',
         invited_by_user_id: decoded.userId,
         expires_at: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(), // 30 ימים
@@ -85,9 +69,9 @@ export async function POST(request: NextRequest) {
 
     console.log('✅ Invitation created successfully')
 
-    // יצירת קישור להזמנה
+    // יצירת קישור להזמנה - גישה לכל השאלונים דרך הדשבורד
     const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
-    const invitationLink = `${baseUrl}/questionnaire/${questionnaire.category}?token=${token}`
+    const invitationLink = `${baseUrl}/dashboard?token=${token}`
 
     return NextResponse.json({
       success: true,
@@ -96,13 +80,9 @@ export async function POST(request: NextRequest) {
         token: invitation.token,
         managerEmail: invitation.manager_email,
         managerName: invitation.manager_name,
-        questionnaire: {
-          id: questionnaire.id,
-          title: questionnaire.title,
-          category: questionnaire.category
-        },
         invitationLink,
-        expiresAt: invitation.expires_at
+        expiresAt: invitation.expires_at,
+        message: 'הזמנה לגישה לכל השאלונים במערכת'
       }
     })
 
