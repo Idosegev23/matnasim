@@ -50,7 +50,6 @@ export async function GET(request: NextRequest) {
           id,
           question_text,
           question_type,
-          options,
           is_required
         )
       `)
