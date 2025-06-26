@@ -53,15 +53,39 @@ export async function POST(request: NextRequest) {
       }, { status: 409 })
     }
 
-    // Generate UUID for questionnaire_id (required field)
-    const defaultQuestionnaireId = crypto.randomUUID()
-    
-    // Insert invitation into database - simple invitation to the system
+    // Try to get an existing questionnaire ID
+    const { data: existingQuestionnaire } = await supabase
+      .from('questionnaires')
+      .select('id')
+      .limit(1)
+      .single()
+
+    // Use existing questionnaire ID or create a temporary one
+    let questionnaireId = existingQuestionnaire?.id
+
+    // If no questionnaire exists, create a default one first
+    if (!questionnaireId) {
+      const { data: newQuestionnaire } = await supabase
+        .from('questionnaires')
+        .insert({
+          title: 'מערכת השאלונים הכללית',
+          category: 'general',
+          description: 'שאלון כללי למערכת המתנסים',
+          year: new Date().getFullYear(),
+          is_active: true
+        })
+        .select('id')
+        .single()
+      
+      questionnaireId = newQuestionnaire?.id
+    }
+
+    // Insert invitation into database with valid questionnaire_id
     const { data, error } = await supabase
       .from('invitations')
       .insert({
         token: invitationToken,
-        questionnaire_id: defaultQuestionnaireId,
+        questionnaire_id: questionnaireId,
         manager_email: managerEmail.toLowerCase(),
         manager_name: managerName,
         organization_name: authResult.payload.organizationName || 'TriRoars Development',
