@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
         invitation_token: invitationToken,
         expires_at: expiresAt.toISOString(),
         user_details: userDetails,
-        message: `You have been invited to access the questionnaire system by ${authResult.user.fullName}`,
+        message: `You have been invited to access the questionnaire system by ${authResult.payload.fullName}`,
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString()
       })
