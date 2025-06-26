@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
     const { data: invitation, error: invitationError } = await supabase
       .from('invitations')
       .select('*')
-      .eq('invitation_token', token)  // Use correct field name
+      .eq('token', token)  // Use correct field name
       .eq('status', 'pending')
       .single()
 
@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
     }
 
     // בדיקה שהמייל תואם להזמנה - using correct field name
-    if (invitation.email !== normalizedEmail) {
+    if (invitation.manager_email !== normalizedEmail) {
       return NextResponse.json(
         { message: 'כתובת המייל אינה תואמת להזמנה' },
         { status: 400 }
@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
 
     // בדיקת דדליין - using correct field name
     const now = new Date()
-    const deadline = new Date(invitation.expires_at)  // Use correct field name
+    const deadline = new Date(invitation.deadline)  // Use correct field name
     if (now > deadline) {
       return NextResponse.json(
         { message: 'תוקף ההזמנה פג' },
@@ -92,8 +92,8 @@ export async function POST(request: NextRequest) {
     await supabase
       .from('invitations')
       .update({
-        status: 'accepted',  // Use 'accepted' status
-        accepted_at: new Date().toISOString(),  // Use correct field name
+        status: 'registered',  // Use 'registered' status
+        registered_at: new Date().toISOString(),  // Use correct field name
         updated_at: new Date().toISOString()
       })
       .eq('id', invitation.id)

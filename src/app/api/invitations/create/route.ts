@@ -37,31 +37,43 @@ export async function POST(request: NextRequest) {
     const invitationToken = crypto.randomBytes(32).toString('hex')
     console.log('🔑 Generated invitation token')
 
-    // Calculate expiration date from deadline
-    const expiresAt = new Date(deadline)
-    console.log('⏰ Invitation expires at:', expiresAt.toISOString())
+    // Check if invitation already exists for this email
+    const { data: existingInvitation } = await supabase
+      .from('invitations')
+      .select('*')
+      .eq('manager_email', managerEmail.toLowerCase())
+      .eq('status', 'pending')
+      .single()
 
-    // Store user details as JSON
-    const userDetails = {
-      managerName,
-      invitedFor: 'questionnaire_system'
+    if (existingInvitation) {
+      console.log('⚠️ Invitation already exists for this email')
+      return NextResponse.json({ 
+        error: 'Invitation already exists for this email',
+        existingToken: existingInvitation.token
+      }, { status: 409 })
     }
 
-    // Insert invitation into database with exact schema
+    // Get a questionnaire ID for the invitation (using general category as default)
+    const { data: questionnaire } = await supabase
+      .from('questionnaires')
+      .select('id')
+      .eq('category', 'general')
+      .single()
+
+    const questionnaireId = questionnaire?.id || 'general_questionnaire_id'
+
+    // Insert invitation into database with correct schema
     const { data, error } = await supabase
       .from('invitations')
       .insert({
-        email: managerEmail.toLowerCase(), // Store email in lowercase
-        invited_by: userId,
-        invited_to_role: 'super_admin', // Use 'super_admin' - the valid enum value
-        invited_to_projects: null, // No specific projects for questionnaire system
-        status: 'pending',
-        invitation_token: invitationToken,
-        expires_at: expiresAt.toISOString(),
-        user_details: userDetails,
-        message: `You have been invited to access the questionnaire system by ${authResult.payload.fullName}`,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString()
+        token: invitationToken,
+        questionnaire_id: questionnaireId,
+        manager_email: managerEmail.toLowerCase(),
+        manager_name: managerName,
+        organization_name: authResult.payload.organizationName || 'TriRoars Development',
+        deadline: deadline,
+        created_by: userId,
+        status: 'pending'
       })
       .select()
       .single()
@@ -80,9 +92,9 @@ export async function POST(request: NextRequest) {
       success: true,
       invitation: {
         id: data.id,
-        email: data.email,
-        token: data.invitation_token,
-        expiresAt: data.expires_at,
+        email: data.manager_email,
+        token: data.token,
+        deadline: data.deadline,
         status: data.status
       }
     })
