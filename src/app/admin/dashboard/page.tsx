@@ -207,6 +207,13 @@ export default function AdminDashboardPage() {
         <p>שלום {dashboardData.admin.name} - {dashboardData.admin.organization}</p>
         <div style={{ display: 'flex', gap: '10px' }}>
           <button 
+            onClick={() => router.push('/admin/completed-questionnaires')} 
+            className="btn btn-primary"
+            style={{ backgroundColor: '#10b981', border: 'none' }}
+          >
+            📊 שאלונים מושלמים
+          </button>
+          <button 
             onClick={() => setShowInviteModal(true)} 
             className="btn btn-primary"
           >

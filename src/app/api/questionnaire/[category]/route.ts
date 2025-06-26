@@ -18,12 +18,13 @@ export async function GET(
       return NextResponse.json({ error: 'No token provided' }, { status: 401 });
     }
 
-    const decoded = await verifyToken(token);
-    if (!decoded) {
+    const decodedResult = await verifyToken(token);
+    if (!decodedResult.success || !decodedResult.payload) {
       console.log('❌ Invalid token');
       return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
     }
 
+    const decoded = decodedResult.payload;
     console.log('✅ Token verified for user:', decoded.userId);
 
     // קבלת השאלון לפי קטגוריה
