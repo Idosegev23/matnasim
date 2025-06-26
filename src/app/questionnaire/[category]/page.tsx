@@ -147,7 +147,7 @@ export default function QuestionnairePage() {
           
           // אם יש כל סוג של תשובה, נטען אותה
           if (radioAnswer !== null || textAnswer !== null) {
-            existingAnswers[question.id] = {
+                        existingAnswers[question.id] = {
               radio: radioAnswer || '',
               text: textAnswer || ''
             };
@@ -223,7 +223,7 @@ export default function QuestionnairePage() {
         setAutoSaveStatus('שגיאה בשמירה ✗');
         setTimeout(() => setAutoSaveStatus(''), 3000);
       } else {
-        alert('שגיאה בשמירת התשובה');
+      alert('שגיאה בשמירת התשובה');
       }
     } finally {
       setSaving(false);
@@ -403,7 +403,7 @@ export default function QuestionnairePage() {
   return (
     <div style={{ minHeight: '100vh' }}>
       {/* Header with gradient background */}
-      <div style={{
+    <div style={{
         background: getCategoryGradient(category),
         color: 'white',
         boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)',
@@ -421,7 +421,7 @@ export default function QuestionnairePage() {
               <button 
                 onClick={() => router.push('/dashboard')}
                 className="back-button"
-                style={{ 
+                style={{
                   background: 'rgba(255, 255, 255, 0.2)',
                   color: 'white',
                   border: 'none'
@@ -482,7 +482,7 @@ export default function QuestionnairePage() {
         {/* Section Navigation */}
         {sections.length > 1 && (
           <div className="card" style={{ marginTop: '2rem' }}>
-            <h3 style={{ 
+            <h3 style={{
               marginBottom: '20px',
               display: 'flex',
               alignItems: 'center',
@@ -528,81 +528,81 @@ export default function QuestionnairePage() {
           )}
           
           <div style={{ padding: '2rem' }}>
-            {currentSectionQuestions.map((question, index) => (
+              {currentSectionQuestions.map((question, index) => (
               <div key={question.id} className="question-group">
-                <div style={{
-                  display: 'flex',
-                  gap: '1.5rem',
-                  alignItems: 'flex-start'
-                }}>
                   <div style={{
-                    flexShrink: 0,
-                    width: '40px',
-                    height: '40px',
-                    background: getCategoryGradient(category),
-                    color: 'white',
-                    borderRadius: '12px',
                     display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
+                    gap: '1.5rem',
+                    alignItems: 'flex-start'
+                  }}>
+                    <div style={{
+                      flexShrink: 0,
+                      width: '40px',
+                      height: '40px',
+                    background: getCategoryGradient(category),
+                      color: 'white',
+                      borderRadius: '12px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
                     fontWeight: 'bold',
                     fontSize: '16px'
-                  }}>
-                    {question.question_number}
-                  </div>
-                  
+                    }}>
+                      {question.question_number}
+                    </div>
+                    
                   <div style={{ flex: 1 }}>
-                    <p style={{
+                      <p style={{
                       fontSize: '18px',
                       marginBottom: '20px',
-                      lineHeight: '1.6',
-                      fontWeight: '500'
-                    }}>
-                      {question.question_text}
+                        lineHeight: '1.6',
+                        fontWeight: '500'
+                      }}>
+                        {question.question_text}
                       {question.is_required && (
                         <span style={{ color: '#ef4444', marginRight: '5px' }}>*</span>
                       )}
-                    </p>
+                      </p>
 
-                    {/* Radio Options */}
+                      {/* Radio Options */}
                     <div className="radio-group">
-                      {['כן', 'לא', 'חלקית'].map((option) => {
-                        const isSelected = answers[question.id]?.radio === option;
-                        return (
+                         {['כן', 'לא', 'חלקית'].map((option) => {
+                           const isSelected = answers[question.id]?.radio === option;
+                           return (
                           <label key={option} className="radio-label">
-                            <input
-                              type="radio"
-                              name={`question-${question.id}`}
-                              value={option}
+                              <input
+                                type="radio"
+                                name={`question-${question.id}`}
+                                value={option}
                               checked={isSelected}
-                              onChange={() => {
-                                handleAnswerChange(question.id, 'radio', option);
-                                saveAnswer(question.id);
-                              }}
+                                onChange={() => {
+                                  handleAnswerChange(question.id, 'radio', option);
+                                  saveAnswer(question.id);
+                                }}
                             />
                             <span>{option}</span>
                           </label>
-                        );
-                      })}
-                    </div>
+                           );
+                         })}
+                      </div>
 
-                    {/* Text Answer */}
+                      {/* Text Answer */}
                     <div className="follow-up">
                       <label>הערות נוספות:</label>
-                      <textarea
-                        value={answers[question.id]?.text || ''}
-                        onChange={(e) => {
-                          handleAnswerChange(question.id, 'text', e.target.value);
-                        }}
+                        <textarea
+                          value={answers[question.id]?.text || ''}
+                          onChange={(e) => {
+                            handleAnswerChange(question.id, 'text', e.target.value);
+                          }}
                         onBlur={() => saveAnswer(question.id)}
-                        rows={3}
-                        placeholder="הוסיפו הערות או הסברים נוספים..."
-                      />
+                          rows={3}
+                          placeholder="הוסיפו הערות או הסברים נוספים..."
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
 
@@ -657,7 +657,7 @@ export default function QuestionnairePage() {
               {saving ? (
                 <>
                   <div className="spinner" style={{ 
-                    width: '20px', 
+                    width: '20px',
                     height: '20px',
                     marginLeft: '10px'
                   }}></div>
@@ -676,7 +676,7 @@ export default function QuestionnairePage() {
             onClick={goToNextSection}
             disabled={!canGoNext()}
             className={`btn ${canGoNext() ? 'btn-primary' : ''}`}
-            style={{ 
+            style={{
               background: canGoNext() ? getCategoryGradient(category) : undefined,
               opacity: canGoNext() ? 1 : 0.5 
             }}
@@ -684,7 +684,7 @@ export default function QuestionnairePage() {
             הבא →
           </button>
         </div>
-      </div>
+            </div>
     </div>
   );
 } 

@@ -521,7 +521,7 @@ export default function QuestionnaireResponsesPage({
                     {question.response ? (
                       <div>
                         {/* Radio Answer */}
-                        {question.response.radio_answer && (
+                        {question.response.radio_answer !== null && question.response.radio_answer !== undefined && (
                           <div style={{ marginBottom: '15px' }}>
                             <div style={{ 
                               display: 'flex',
@@ -557,7 +557,7 @@ export default function QuestionnaireResponsesPage({
                         )}
 
                         {/* Text Answer */}
-                        {question.response.text_answer && (
+                        {question.response.text_answer !== null && question.response.text_answer !== undefined && (
                           <div style={{ marginBottom: '15px' }}>
                             <div style={{ 
                               fontSize: '14px',
