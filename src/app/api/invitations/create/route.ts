@@ -29,12 +29,30 @@ export async function POST(request: NextRequest) {
       }, { status: 400 })
     }
 
-    // בדיקה שהשאלון קיים
-    const { data: questionnaire, error: questionnaireError } = await supabase
-      .from('questionnaires')
-      .select('id, title, category')
-      .eq('id', questionnaireId)
-      .single()
+    // בדיקה שהשאלון קיים - נחפש לפי ID או לפי קטגוריה
+    let questionnaire = null
+    let questionnaireError = null
+
+    // אם questionnaireId הוא מספר, נחפש לפי ID
+    if (!isNaN(Number(questionnaireId))) {
+      const result = await supabase
+        .from('questionnaires')
+        .select('id, title, category')
+        .eq('id', questionnaireId)
+        .single()
+      questionnaire = result.data
+      questionnaireError = result.error
+    } else {
+      // אחרת, נחפש לפי קטגוריה
+      const result = await supabase
+        .from('questionnaires')
+        .select('id, title, category')
+        .eq('category', questionnaireId)
+        .eq('is_active', true)
+        .single()
+      questionnaire = result.data
+      questionnaireError = result.error
+    }
 
     if (questionnaireError || !questionnaire) {
       console.log('❌ Questionnaire not found:', questionnaireError)

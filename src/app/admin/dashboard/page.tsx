@@ -41,6 +41,8 @@ export default function AdminDashboardPage() {
   const [showTokenModal, setShowTokenModal] = useState(false)
   const [inviteEmail, setInviteEmail] = useState('')
   const [inviteDeadline, setInviteDeadline] = useState('')
+  const [selectedQuestionnaire, setSelectedQuestionnaire] = useState('')
+  const [questionnaires, setQuestionnaires] = useState<any[]>([])
   const [generatedToken, setGeneratedToken] = useState('')
   const [creating, setCreating] = useState(false)
   const [wasReplaced, setWasReplaced] = useState(false)
@@ -78,7 +80,41 @@ export default function AdminDashboardPage() {
       }
     }
 
+    const fetchQuestionnaires = async () => {
+      try {
+        const token = localStorage.getItem('token')
+        if (!token) return
+
+        const response = await fetch('/api/questionnaires/list', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        })
+
+        if (response.ok) {
+          const data = await response.json()
+          setQuestionnaires(data.questionnaires || [])
+          if (data.questionnaires && data.questionnaires.length > 0) {
+            setSelectedQuestionnaire(data.questionnaires[0].id)
+          }
+        } else {
+          // Fallback: Add some default questionnaires if API fails
+          const defaultQuestionnaires = [
+            { id: 'accessibility', title: 'שאלון נגישות', category: 'accessibility' },
+            { id: 'security', title: 'שאלון ביטחון', category: 'security' },
+            { id: 'budget', title: 'שאלון תקציב', category: 'budget' },
+            { id: 'hr', title: 'שאלון משאבי אנוש', category: 'hr' }
+          ]
+          setQuestionnaires(defaultQuestionnaires)
+          setSelectedQuestionnaire(defaultQuestionnaires[0].id)
+        }
+      } catch (error) {
+        console.error('Failed to fetch questionnaires:', error)
+      }
+    }
+
     fetchDashboardData()
+    fetchQuestionnaires()
   }, [router])
 
   const handleLogout = () => {
@@ -105,7 +141,7 @@ export default function AdminDashboardPage() {
   }
 
   const createInvitation = async (replaceExisting = false) => {
-    if (!inviteEmail || !inviteDeadline) {
+    if (!inviteEmail || !inviteDeadline || !selectedQuestionnaire) {
       alert('אנא מלא את כל השדות')
       return
     }
@@ -120,7 +156,7 @@ export default function AdminDashboardPage() {
           'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
-          questionnaireId: 1, // Default questionnaire ID - you may need to make this dynamic
+          questionnaireId: selectedQuestionnaire,
           managerEmail: inviteEmail,
           managerName: inviteEmail.split('@')[0] // Extract name from email as fallback
         })
@@ -330,6 +366,22 @@ export default function AdminDashboardPage() {
                יצירת הזמנה למילוי השאלון השנתי
              </p>
              
+             <div className="form-group">
+               <label className="form-label">בחירת שאלון</label>
+               <select
+                 className="form-input"
+                 value={selectedQuestionnaire}
+                 onChange={(e) => setSelectedQuestionnaire(e.target.value)}
+               >
+                 <option value="">בחר שאלון</option>
+                 {questionnaires.map((questionnaire) => (
+                   <option key={questionnaire.id} value={questionnaire.id}>
+                     {questionnaire.title} ({questionnaire.category})
+                   </option>
+                 ))}
+               </select>
+             </div>
+
              <div className="form-group">
                <label className="form-label">אימייל מנהל המתנ"ס</label>
                <input
