@@ -87,19 +87,19 @@ export default function QuestionnairePage() {
 
   // שמירה אוטומטית כל 30 שניות
   useEffect(() => {
-         const autoSaveInterval = setInterval(async () => {
-       const pendingAnswers = Object.keys(answers);
-       for (const questionId of pendingAnswers) {
-         if (answers[questionId]?.radio || answers[questionId]?.text) {
-           try {
-             await saveAnswer(questionId, false); // שמירה ללא הצגת סטטוס
-             console.log('🔄 Auto-saved answer for question:', questionId);
-           } catch (error) {
-             console.error('Error auto-saving:', error);
-           }
-         }
-       }
-     }, 30000); // כל 30 שניות
+    const autoSaveInterval = setInterval(async () => {
+      const pendingAnswers = Object.keys(answers);
+      for (const questionId of pendingAnswers) {
+        if (answers[questionId]?.radio || answers[questionId]?.text) {
+          try {
+            await saveAnswer(questionId, false); // שמירה ללא הצגת סטטוס
+            console.log('🔄 Auto-saved answer for question:', questionId);
+          } catch (error) {
+            console.error('Error auto-saving:', error);
+          }
+        }
+      }
+    }, 30000); // כל 30 שניות
 
     return () => clearInterval(autoSaveInterval);
   }, [answers]);
@@ -276,6 +276,24 @@ export default function QuestionnairePage() {
     return colorMap[category] || '#6b7280'
   }
 
+  const getCategoryGradient = (category: string) => {
+    const gradientMap: { [key: string]: string } = {
+      'accessibility': 'linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%)',
+      'accounting': 'linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%)', 
+      'budget': 'linear-gradient(135deg, #10b981 0%, #34d399 100%)',
+      'community': 'linear-gradient(135deg, #ec4899 0%, #f472b6 100%)',
+      'financial': 'linear-gradient(135deg, #059669 0%, #34d399 100%)',
+      'hr': 'linear-gradient(135deg, #f97316 0%, #fb923c 100%)',
+      'inventory': 'linear-gradient(135deg, #06b6d4 0%, #67e8f9 100%)',
+      'legal': 'linear-gradient(135deg, #6366f1 0%, #a78bfa 100%)',
+      'salary': 'linear-gradient(135deg, #eab308 0%, #fbbf24 100%)',
+      'security': 'linear-gradient(135deg, #ef4444 0%, #f87171 100%)',
+      'sgarot': 'linear-gradient(135deg, #14b8a6 0%, #5eead4 100%)',
+      'general': 'linear-gradient(135deg, #6b7280 0%, #9ca3af 100%)'
+    }
+    return gradientMap[category] || 'linear-gradient(135deg, #6b7280 0%, #9ca3af 100%)'
+  }
+
   const getCategoryDisplayName = (category: string) => {
     const categoryMap: { [key: string]: string } = {
       'accessibility': 'נגישות',
@@ -347,30 +365,12 @@ export default function QuestionnairePage() {
 
   if (loading) {
     return (
-      <div style={{
-        background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}>
-        <div style={{textAlign: 'center'}}>
-          <div style={{
-            width: '60px',
-            height: '60px',
-            border: '3px solid #e2e8f0',
-            borderTop: '3px solid #667eea',
-            borderRadius: '50%',
-            animation: 'spin 1s linear infinite',
-            margin: '0 auto 1.5rem auto'
-          }}></div>
-          <p style={{
-            color: '#4a5568',
-            fontSize: '1.1rem',
-            fontWeight: '500'
-          }}>
-            טוען שאלון...
-          </p>
+      <div className="page-container" style={{ textAlign: 'center' }}>
+        <div className="card" style={{ maxWidth: '400px' }}>
+          <div className="loading">
+            <div className="spinner"></div>
+          </div>
+          <h2 style={{ marginTop: '20px' }}>טוען שאלון...</h2>
         </div>
       </div>
     );
@@ -378,77 +378,14 @@ export default function QuestionnairePage() {
 
   if (error || !questionnaireData) {
     return (
-      <div style={{
-        background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '1rem'
-      }}>
-        <div style={{
-          background: 'rgba(255, 255, 255, 0.95)',
-          borderRadius: '20px',
-          padding: '2rem',
-          maxWidth: '400px',
-          width: '100%',
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08)',
-          border: '1px solid rgba(226, 232, 240, 0.8)',
-          textAlign: 'center'
-        }}>
-          <div style={{
-            width: '80px',
-            height: '80px',
-            background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
-            borderRadius: '50%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            margin: '0 auto 1.5rem auto'
-          }}>
-            <div style={{
-              width: '40px',
-              height: '40px',
-              background: 'rgba(255, 255, 255, 0.9)',
-              borderRadius: '50%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}>
-              <span style={{color: '#ef4444', fontSize: '1.5rem', fontWeight: 'bold'}}>!</span>
-            </div>
-          </div>
-          <p style={{
-            color: '#ef4444',
-            fontSize: '1.1rem',
-            fontWeight: '500',
-            marginBottom: '1.5rem'
-          }}>
-            {error || 'שאלון לא נמצא'}
-          </p>
+      <div className="page-container" style={{ textAlign: 'center' }}>
+        <div className="card" style={{ maxWidth: '400px' }}>
+          <div style={{ fontSize: '64px', marginBottom: '20px' }}>⚠️</div>
+          <h2 style={{ color: '#ef4444', marginBottom: '20px' }}>שגיאה</h2>
+          <p style={{ marginBottom: '30px' }}>{error || 'שאלון לא נמצא'}</p>
           <button 
             onClick={() => router.push('/dashboard')}
-            style={{
-              padding: '12px 24px',
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              color: 'white',
-              border: 'none',
-              borderRadius: '10px',
-              fontSize: '1rem',
-              fontWeight: '600',
-              cursor: 'pointer',
-              transition: 'all 0.3s ease'
-            }}
-            onMouseEnter={(e) => {
-              const target = e.target as HTMLButtonElement
-              target.style.transform = 'translateY(-1px)'
-              target.style.boxShadow = '0 8px 25px rgba(102, 126, 234, 0.4)'
-            }}
-            onMouseLeave={(e) => {
-              const target = e.target as HTMLButtonElement
-              target.style.transform = 'translateY(0)'
-              target.style.boxShadow = 'none'
-            }}
+            className="btn btn-primary"
           >
             חזרה לדשבורד
           </button>
@@ -464,79 +401,40 @@ export default function QuestionnairePage() {
   console.log('📝 Current answers state:', answers);
 
   return (
-    <div style={{
-      background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
-      minHeight: '100vh'
-    }}>
-      {/* Header */}
+    <div style={{ minHeight: '100vh' }}>
+      {/* Header with gradient background */}
       <div style={{
-        background: getCategoryColor(category),
+        background: getCategoryGradient(category),
         color: 'white',
-        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)'
+        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)',
+        padding: '2rem 0'
       }}>
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          padding: '2rem 1rem'
-        }}>
+        <div className="container">
           <div style={{
             display: 'flex',
             justifyContent: 'space-between',
-            alignItems: 'flex-start',
+            alignItems: 'center',
+            flexWrap: 'wrap',
             gap: '2rem'
           }}>
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '1.5rem'
-            }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
               <button 
                 onClick={() => router.push('/dashboard')}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
+                className="back-button"
+                style={{ 
                   background: 'rgba(255, 255, 255, 0.2)',
-                  padding: '10px 16px',
-                  borderRadius: '10px',
-                  border: 'none',
                   color: 'white',
-                  fontSize: '0.9rem',
-                  fontWeight: '500',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s ease'
-                }}
-                onMouseEnter={(e) => {
-                  const target = e.target as HTMLButtonElement
-                  target.style.background = 'rgba(255, 255, 255, 0.3)'
-                }}
-                onMouseLeave={(e) => {
-                  const target = e.target as HTMLButtonElement
-                  target.style.background = 'rgba(255, 255, 255, 0.2)'
+                  border: 'none'
                 }}
               >
-                <div style={{
-                  width: '20px',
-                  height: '20px',
-                  background: 'rgba(255, 255, 255, 0.8)',
-                  borderRadius: '4px'
-                }}></div>
-                <span>חזרה לדשבורד</span>
+                ← חזרה לדשבורד
               </button>
               
               <div>
-                <h1 style={{
-                  fontSize: '1.8rem',
-                  fontWeight: '700',
-                  margin: '0 0 0.5rem 0'
-                }}>
+                <h1 className="questionnaire-title">
                   {getCategoryDisplayName(category)}
                 </h1>
-                <p style={{
-                  color: 'rgba(255, 255, 255, 0.8)',
-                  fontSize: '1rem',
-                  margin: 0
-                }}>
+                <p style={{ color: 'rgba(255, 255, 255, 0.9)', fontSize: '16px' }}>
                   {questionnaireData.questionnaire.description}
                 </p>
               </div>
@@ -544,7 +442,7 @@ export default function QuestionnairePage() {
             
             {/* Auto Save Status */}
             {autoSaveStatus && (
-              <div style={{
+              <div className="auto-save-status" style={{
                 background: autoSaveStatus.includes('✓') ? 'rgba(34, 197, 94, 0.15)' : 
                            autoSaveStatus.includes('✗') ? 'rgba(239, 68, 68, 0.15)' : 
                            'rgba(59, 130, 246, 0.15)',
@@ -555,45 +453,24 @@ export default function QuestionnairePage() {
                 fontSize: '14px',
                 fontWeight: '500',
                 border: `1px solid ${autoSaveStatus.includes('✓') ? '#22c55e' : 
-                                    autoSaveStatus.includes('✗') ? '#ef4444' : '#3b82f6'}`,
-                transition: 'all 0.3s ease'
+                                    autoSaveStatus.includes('✗') ? '#ef4444' : '#3b82f6'}`
               }}>
                 {autoSaveStatus}
               </div>
             )}
             
             {/* Progress */}
-            <div style={{
-              background: 'rgba(255, 255, 255, 0.15)',
-              borderRadius: '16px',
-              padding: '1.5rem',
-              minWidth: '250px',
-              border: '1px solid rgba(255, 255, 255, 0.2)'
-            }}>
-              <div style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                marginBottom: '1rem'
-              }}>
-                <span style={{fontSize: '1rem', fontWeight: '500'}}>התקדמות</span>
-                <span style={{fontSize: '1.3rem', fontWeight: '700'}}>{questionnaireData.progress.percentage}%</span>
+            <div className="questionnaire-progress">
+              <div style={{ marginBottom: '10px', textAlign: 'center' }}>
+                <span style={{ fontSize: '14px' }}>התקדמות</span>
+                <span style={{ fontSize: '18px', fontWeight: 'bold', marginRight: '10px' }}>
+                  {questionnaireData.progress.percentage}%
+                </span>
               </div>
-              <div style={{
-                width: '100%',
-                height: '10px',
-                background: 'rgba(255, 255, 255, 0.3)',
-                borderRadius: '5px',
-                overflow: 'hidden'
-              }}>
+              <div className="progress-bar">
                 <div 
-                  style={{
-                    height: '100%',
-                    background: 'rgba(255, 255, 255, 0.9)',
-                    borderRadius: '5px',
-                    transition: 'width 0.8s ease-out',
-                    width: `${questionnaireData.progress.percentage}%`
-                  }}
+                  className="progress-fill"
+                  style={{ width: `${questionnaireData.progress.percentage}%` }}
                 ></div>
               </div>
             </div>
@@ -601,34 +478,20 @@ export default function QuestionnairePage() {
         </div>
       </div>
 
-      <div style={{
-        maxWidth: '1200px',
-        margin: '0 auto',
-        padding: '2rem 1rem'
-      }}>
+      <div className="container">
         {/* Section Navigation */}
         {sections.length > 1 && (
-          <div style={{
-            background: 'rgba(255, 255, 255, 0.95)',
-            borderRadius: '20px',
-            padding: '2rem',
-            marginBottom: '2rem',
-            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08)',
-            border: '1px solid rgba(226, 232, 240, 0.8)'
-          }}>
-            <h3 style={{
-              fontSize: '1.2rem',
-              fontWeight: '600',
-              color: '#2d3748',
-              marginBottom: '1.5rem',
+          <div className="card" style={{ marginTop: '2rem' }}>
+            <h3 style={{ 
+              marginBottom: '20px',
               display: 'flex',
               alignItems: 'center',
-              gap: '0.5rem'
+              gap: '10px'
             }}>
               <div style={{
                 width: '24px',
                 height: '24px',
-                background: getCategoryColor(category),
+                background: getCategoryGradient(category),
                 borderRadius: '6px'
               }}></div>
               סעיפי השאלון
@@ -642,27 +505,9 @@ export default function QuestionnairePage() {
                 <button
                   key={index}
                   onClick={() => setCurrentSection(section)}
+                  className={`btn ${currentSection === section ? 'btn-primary' : 'btn-secondary'}`}
                   style={{
-                    padding: '12px 20px',
-                    borderRadius: '12px',
-                    fontWeight: '500',
-                    border: 'none',
-                    cursor: 'pointer',
-                    transition: 'all 0.3s ease',
-                    background: currentSection === section ? getCategoryColor(category) : '#f3f4f6',
-                    color: currentSection === section ? 'white' : '#374151'
-                  }}
-                  onMouseEnter={(e) => {
-                    const target = e.target as HTMLButtonElement
-                    if (currentSection !== section) {
-                      target.style.background = '#e5e7eb'
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    const target = e.target as HTMLButtonElement
-                    if (currentSection !== section) {
-                      target.style.background = '#f3f4f6'
-                    }
+                    background: currentSection === section ? getCategoryGradient(category) : undefined
                   }}
                 >
                   {section || 'ללא סעיף'}
@@ -673,236 +518,102 @@ export default function QuestionnairePage() {
         )}
 
         {/* Current Section Questions */}
-        <div style={{
-          background: 'rgba(255, 255, 255, 0.95)',
-          borderRadius: '20px',
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08)',
-          border: '1px solid rgba(226, 232, 240, 0.8)',
-          overflow: 'hidden'
-        }}>
+        <div className="questionnaire-section">
           {currentSection && (
-            <div style={{
-              background: getCategoryColor(category),
-              color: 'white',
-              padding: '2rem'
+            <div className="section-header" style={{
+              background: getCategoryGradient(category)
             }}>
-              <h2 style={{
-                fontSize: '1.5rem',
-                fontWeight: '600',
-                margin: 0,
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.75rem'
-              }}>
-                <div style={{
-                  width: '30px',
-                  height: '30px',
-                  background: 'rgba(255, 255, 255, 0.2)',
-                  borderRadius: '8px'
-                }}></div>
-                {currentSection}
-              </h2>
+              <h2>{currentSection}</h2>
             </div>
           )}
           
-          <div style={{padding: '2rem'}}>
-            <div style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '2rem'
-            }}>
-              {currentSectionQuestions.map((question, index) => (
-                <div key={question.id} style={{
-                  border: '1px solid #e2e8f0',
-                  borderRadius: '16px',
-                  padding: '2rem',
-                  background: 'rgba(249, 250, 251, 0.5)',
-                  transition: 'all 0.3s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = 'rgba(249, 250, 251, 0.8)'
-                  e.currentTarget.style.borderColor = '#cbd5e1'
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = 'rgba(249, 250, 251, 0.5)'
-                  e.currentTarget.style.borderColor = '#e2e8f0'
+          <div style={{ padding: '2rem' }}>
+            {currentSectionQuestions.map((question, index) => (
+              <div key={question.id} className="question-group">
+                <div style={{
+                  display: 'flex',
+                  gap: '1.5rem',
+                  alignItems: 'flex-start'
                 }}>
                   <div style={{
+                    flexShrink: 0,
+                    width: '40px',
+                    height: '40px',
+                    background: getCategoryGradient(category),
+                    color: 'white',
+                    borderRadius: '12px',
                     display: 'flex',
-                    gap: '1.5rem',
-                    alignItems: 'flex-start'
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontWeight: 'bold',
+                    fontSize: '16px'
                   }}>
-                    <div style={{
-                      flexShrink: 0,
-                      width: '40px',
-                      height: '40px',
-                      background: getCategoryColor(category),
-                      color: 'white',
-                      borderRadius: '12px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontWeight: '700',
-                      fontSize: '1rem'
+                    {question.question_number}
+                  </div>
+                  
+                  <div style={{ flex: 1 }}>
+                    <p style={{
+                      fontSize: '18px',
+                      marginBottom: '20px',
+                      lineHeight: '1.6',
+                      fontWeight: '500'
                     }}>
-                      {question.question_number}
-                    </div>
-                    
-                    <div style={{flex: 1}}>
-                      <p style={{
-                        color: '#2d3748',
-                        fontSize: '1.1rem',
-                        marginBottom: '2rem',
-                        lineHeight: '1.6',
-                        fontWeight: '500'
-                      }}>
-                        {question.question_text}
-                        {question.is_required && <span style={{color: '#ef4444', marginRight: '0.25rem'}}>*</span>}
-                      </p>
+                      {question.question_text}
+                      {question.is_required && (
+                        <span style={{ color: '#ef4444', marginRight: '5px' }}>*</span>
+                      )}
+                    </p>
 
-                      {/* Radio Options */}
-                      <div style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '1rem',
-                        marginBottom: '2rem'
-                      }}>
-                         {['כן', 'לא', 'חלקית'].map((option) => {
-                           const isSelected = answers[question.id]?.radio === option;
-                           console.log(`Question ${question.question_number}, Option ${option}: isSelected=${isSelected}, currentValue=${answers[question.id]?.radio}`);
-                           return (
-                           <label key={option} style={{
-                             display: 'flex',
-                             alignItems: 'center',
-                             gap: '1rem',
-                             cursor: 'pointer',
-                             padding: '12px 16px',
-                             borderRadius: '10px',
-                             transition: 'all 0.3s ease',
-                             background: isSelected ? 
-                               `${getCategoryColor(category)}15` : 'transparent'
-                           }}
-                          onMouseEnter={(e) => {
-                            if (answers[question.id]?.radio !== option) {
-                              e.currentTarget.style.background = '#f8fafc'
-                            }
-                          }}
-                          onMouseLeave={(e) => {
-                            if (answers[question.id]?.radio !== option) {
-                              e.currentTarget.style.background = 'transparent'
-                            }
-                          }}>
-                            <div style={{position: 'relative'}}>
-                              <input
-                                type="radio"
-                                name={`question-${question.id}`}
-                                value={option}
-                                checked={answers[question.id]?.radio === option}
-                                onChange={() => {
-                                  handleAnswerChange(question.id, 'radio', option);
-                                  saveAnswer(question.id);
-                                }}
-                                style={{display: 'none'}}
-                              />
-                              <div style={{
-                                width: '20px',
-                                height: '20px',
-                                borderRadius: '50%',
-                                border: `2px solid ${answers[question.id]?.radio === option ? getCategoryColor(category) : '#cbd5e1'}`,
-                                background: answers[question.id]?.radio === option ? getCategoryColor(category) : 'white',
-                                transition: 'all 0.3s ease',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center'
-                              }}>
-                                {answers[question.id]?.radio === option && (
-                                  <div style={{
-                                    width: '8px',
-                                    height: '8px',
-                                    background: 'white',
-                                    borderRadius: '50%'
-                                  }}></div>
-                                )}
-                              </div>
-                            </div>
-                            <span style={{
-                              color: answers[question.id]?.radio === option ? '#2d3748' : '#4a5568',
-                              fontWeight: answers[question.id]?.radio === option ? '600' : '500',
-                              fontSize: '1rem'
-                            }}>
-                              {option}
-                            </span>
+                    {/* Radio Options */}
+                    <div className="radio-group">
+                      {['כן', 'לא', 'חלקית'].map((option) => {
+                        const isSelected = answers[question.id]?.radio === option;
+                        return (
+                          <label key={option} className="radio-label">
+                            <input
+                              type="radio"
+                              name={`question-${question.id}`}
+                              value={option}
+                              checked={isSelected}
+                              onChange={() => {
+                                handleAnswerChange(question.id, 'radio', option);
+                                saveAnswer(question.id);
+                              }}
+                            />
+                            <span>{option}</span>
                           </label>
-                           );
-                         })}
-                      </div>
+                        );
+                      })}
+                    </div>
 
-                      {/* Text Answer */}
-                      <div>
-                        <label style={{
-                          display: 'block',
-                          fontSize: '0.9rem',
-                          fontWeight: '500',
-                          color: '#374151',
-                          marginBottom: '0.75rem'
-                        }}>
-                          הערות נוספות:
-                        </label>
-                        <textarea
-                          value={answers[question.id]?.text || ''}
-                          onChange={(e) => {
-                            handleAnswerChange(question.id, 'text', e.target.value);
-                          }}
-                          style={{
-                            width: '100%',
-                            padding: '12px 16px',
-                            border: '1px solid #cbd5e1',
-                            borderRadius: '10px',
-                            fontSize: '1rem',
-                            resize: 'vertical',
-                            background: 'white',
-                            transition: 'all 0.3s ease',
-                            fontFamily: 'inherit'
-                          }}
-                          onFocus={(e) => {
-                            e.target.style.borderColor = getCategoryColor(category)
-                            e.target.style.boxShadow = `0 0 0 3px ${getCategoryColor(category)}20`
-                          }}
-                          onBlur={(e) => {
-                            e.target.style.borderColor = '#cbd5e1'
-                            e.target.style.boxShadow = 'none'
-                            saveAnswer(question.id)
-                          }}
-                          rows={3}
-                          placeholder="הוסיפו הערות או הסברים נוספים..."
-                        />
-                      </div>
+                    {/* Text Answer */}
+                    <div className="follow-up">
+                      <label>הערות נוספות:</label>
+                      <textarea
+                        value={answers[question.id]?.text || ''}
+                        onChange={(e) => {
+                          handleAnswerChange(question.id, 'text', e.target.value);
+                        }}
+                        onBlur={() => saveAnswer(question.id)}
+                        rows={3}
+                        placeholder="הוסיפו הערות או הסברים נוספים..."
+                      />
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
 
         {/* Completion Status */}
         {!isQuestionnaireComplete() && (
-          <div style={{
-            marginTop: '1.5rem',
+          <div className="alert alert-info" style={{ 
             textAlign: 'center',
-            background: 'rgba(255, 255, 255, 0.8)',
-            borderRadius: '12px',
-            padding: '1rem',
-            maxWidth: '600px',
-            margin: '1.5rem auto 0 auto',
-            border: '1px solid rgba(226, 232, 240, 0.8)'
+            margin: '2rem auto',
+            maxWidth: '600px'
           }}>
-            <p style={{
-              color: '#6b7280',
-              fontSize: '0.9rem',
-              fontWeight: '500',
-              margin: 0
-            }}>
+            <p>
               עוד {questionnaireData ? questionnaireData.questionnaire.questions.length - Object.keys(answers).filter(qId => answers[qId]?.radio || answers[qId]?.text).length : 0} שאלות נותרו לענות כדי להשלים את השאלון
             </p>
           </div>
@@ -910,105 +621,26 @@ export default function QuestionnairePage() {
 
         {/* Questionnaire Complete Message */}
         {isQuestionnaireComplete() && (
-          <div style={{
-            marginTop: '1.5rem',
+          <div className="alert alert-success" style={{ 
             textAlign: 'center',
-            background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
-            borderRadius: '12px',
-            padding: '1.5rem',
-            maxWidth: '600px',
-            margin: '1.5rem auto 0 auto',
-            color: 'white',
-            boxShadow: '0 8px 25px rgba(16, 185, 129, 0.25)'
+            margin: '2rem auto',
+            maxWidth: '600px'
           }}>
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '0.75rem',
-              marginBottom: '0.5rem'
-            }}>
-              <div style={{
-                width: '24px',
-                height: '24px',
-                background: 'rgba(255, 255, 255, 0.9)',
-                borderRadius: '50%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
-                <span style={{color: '#10b981', fontSize: '1rem', fontWeight: 'bold'}}>✓</span>
-              </div>
-              <h3 style={{
-                fontSize: '1.1rem',
-                fontWeight: '600',
-                margin: 0
-              }}>
-                השאלון הושלם בהצלחה!
-              </h3>
-            </div>
-            <p style={{
-              fontSize: '0.9rem',
-              margin: 0,
-              opacity: 0.9
-            }}>
-              כל השאלות נענו. ניתן להגיש את השאלון עכשיו.
-            </p>
+            <h3>✅ השאלון הושלם בהצלחה!</h3>
+            <p>כל השאלות נענו. ניתן להגיש את השאלון עכשיו.</p>
           </div>
         )}
 
         {/* Navigation Actions */}
-        <div style={{
-          marginTop: '2rem',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          maxWidth: '800px',
-          margin: '2rem auto 0 auto',
-          padding: '0 1rem'
-        }}>
+        <div className="form-actions">
           {/* Previous Button */}
           <button
             onClick={goToPreviousSection}
             disabled={!canGoBack()}
-            style={{
-              padding: '12px 24px',
-              background: canGoBack() ? 'rgba(255, 255, 255, 0.9)' : 'rgba(226, 232, 240, 0.5)',
-              color: canGoBack() ? getCategoryColor(category) : '#9ca3af',
-              fontWeight: '600',
-              borderRadius: '10px',
-              border: `2px solid ${canGoBack() ? getCategoryColor(category) : '#e2e8f0'}`,
-              cursor: canGoBack() ? 'pointer' : 'not-allowed',
-              transition: 'all 0.3s ease',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              fontSize: '1rem',
-              opacity: canGoBack() ? 1 : 0.6
-            }}
-            onMouseEnter={(e) => {
-              if (canGoBack()) {
-                const target = e.target as HTMLButtonElement
-                target.style.transform = 'translateY(-1px)'
-                target.style.boxShadow = `0 4px 15px ${getCategoryColor(category)}30`
-              }
-            }}
-            onMouseLeave={(e) => {
-              if (canGoBack()) {
-                const target = e.target as HTMLButtonElement
-                target.style.transform = 'translateY(0)'
-                target.style.boxShadow = 'none'
-              }
-            }}
+            className={`btn ${canGoBack() ? 'btn-secondary' : ''}`}
+            style={{ opacity: canGoBack() ? 1 : 0.5 }}
           >
-            <div style={{
-              width: '16px',
-              height: '16px',
-              background: canGoBack() ? getCategoryColor(category) : '#9ca3af',
-              borderRadius: '50%',
-              transform: 'rotate(180deg)'
-            }}></div>
-            <span>חזור</span>
+            ← חזור
           </button>
 
           {/* Complete Button - Only when questionnaire is complete */}
@@ -1016,57 +648,24 @@ export default function QuestionnairePage() {
             <button
               onClick={completeQuestionnaire}
               disabled={saving}
+              className="submit-button"
               style={{
-                padding: '16px 32px',
-                background: getCategoryColor(category),
-                color: 'white',
-                fontWeight: '600',
-                borderRadius: '12px',
-                border: 'none',
-                cursor: saving ? 'not-allowed' : 'pointer',
-                transition: 'all 0.3s ease',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.75rem',
-                fontSize: '1.1rem',
+                background: getCategoryGradient(category),
                 opacity: saving ? 0.7 : 1
-              }}
-              onMouseEnter={(e) => {
-                if (!saving) {
-                  const target = e.target as HTMLButtonElement
-                  target.style.transform = 'translateY(-2px)'
-                  target.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.15)'
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (!saving) {
-                  const target = e.target as HTMLButtonElement
-                  target.style.transform = 'translateY(0)'
-                  target.style.boxShadow = 'none'
-                }
               }}
             >
               {saving ? (
                 <>
-                  <div style={{
-                    width: '20px',
+                  <div className="spinner" style={{ 
+                    width: '20px', 
                     height: '20px',
-                    border: '2px solid rgba(255, 255, 255, 0.3)',
-                    borderTop: '2px solid white',
-                    borderRadius: '50%',
-                    animation: 'spin 1s linear infinite'
+                    marginLeft: '10px'
                   }}></div>
-                  <span>שומר...</span>
+                  שומר...
                 </>
               ) : (
                 <>
-                  <div style={{
-                    width: '20px',
-                    height: '20px',
-                    background: 'rgba(255, 255, 255, 0.9)',
-                    borderRadius: '50%'
-                  }}></div>
-                  <span>השלם שאלון</span>
+                  ✓ השלם שאלון
                 </>
               )}
             </button>
@@ -1076,88 +675,16 @@ export default function QuestionnairePage() {
           <button
             onClick={goToNextSection}
             disabled={!canGoNext()}
-            style={{
-              padding: '12px 24px',
-              background: canGoNext() ? getCategoryColor(category) : 'rgba(226, 232, 240, 0.5)',
-              color: canGoNext() ? 'white' : '#9ca3af',
-              fontWeight: '600',
-              borderRadius: '10px',
-              border: 'none',
-              cursor: canGoNext() ? 'pointer' : 'not-allowed',
-              transition: 'all 0.3s ease',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              fontSize: '1rem',
-              opacity: canGoNext() ? 1 : 0.6
-            }}
-            onMouseEnter={(e) => {
-              if (canGoNext()) {
-                const target = e.target as HTMLButtonElement
-                target.style.transform = 'translateY(-1px)'
-                target.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.15)'
-              }
-            }}
-            onMouseLeave={(e) => {
-              if (canGoNext()) {
-                const target = e.target as HTMLButtonElement
-                target.style.transform = 'translateY(0)'
-                target.style.boxShadow = 'none'
-              }
+            className={`btn ${canGoNext() ? 'btn-primary' : ''}`}
+            style={{ 
+              background: canGoNext() ? getCategoryGradient(category) : undefined,
+              opacity: canGoNext() ? 1 : 0.5 
             }}
           >
-            <span>הבא</span>
-            <div style={{
-              width: '16px',
-              height: '16px',
-              background: canGoNext() ? 'rgba(255, 255, 255, 0.9)' : '#9ca3af',
-              borderRadius: '50%'
-            }}></div>
+            הבא →
           </button>
         </div>
-
-        {/* Auto-save indicator */}
-        {saving && (
-          <div style={{
-            position: 'fixed',
-            bottom: '1rem',
-            right: '1rem',
-            background: 'white',
-            borderRadius: '12px',
-            boxShadow: '0 8px 25px rgba(0, 0, 0, 0.15)',
-            padding: '1rem',
-            border: '1px solid #e2e8f0',
-            zIndex: 1000
-          }}>
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.75rem',
-              color: getCategoryColor(category)
-            }}>
-              <div style={{
-                width: '16px',
-                height: '16px',
-                border: `2px solid ${getCategoryColor(category)}30`,
-                borderTop: `2px solid ${getCategoryColor(category)}`,
-                borderRadius: '50%',
-                animation: 'spin 1s linear infinite'
-              }}></div>
-              <span style={{
-                fontSize: '0.9rem',
-                fontWeight: '500'
-              }}>שומר...</span>
-            </div>
-          </div>
-        )}
       </div>
-
-      <style jsx>{`
-        @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-      `}</style>
     </div>
   );
 } 
