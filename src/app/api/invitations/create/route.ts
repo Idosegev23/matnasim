@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
     const { data: existingInvitation } = await supabase
       .from('invitations')
       .select('*')
-      .eq('manager_email', managerEmail)
+      .eq('email', managerEmail)
       .single()
 
     if (existingInvitation) {
@@ -50,14 +50,13 @@ export async function POST(request: NextRequest) {
     const { data: invitation, error: invitationError } = await supabase
       .from('invitations')
       .insert({
-        token,
-        questionnaire_id: 'all_questionnaires', // זמני - מעידה על גישה לכל השאלונים
-        manager_email: managerEmail,
-        manager_name: managerName,
-        deadline: deadline || null,
-        organization_name: decoded.organizationName || 'מתנ"ס',
-        created_by: decoded.userId,
-        status: 'pending'
+        email: managerEmail,
+        invited_by: decoded.userId,
+        invited_to_role: 'viewer', // או 'manager' אם קיים
+        invitation_token: token,
+        expires_at: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(), // 30 ימים
+        status: 'pending',
+        message: `הזמנה למנהל ${managerName} למילוי שאלונים שנתיים`
       })
       .select()
       .single()
@@ -77,9 +76,9 @@ export async function POST(request: NextRequest) {
       success: true,
       invitation: {
         id: invitation.id,
-        token: invitation.token,
-        managerEmail: invitation.manager_email,
-        managerName: invitation.manager_name,
+        token: invitation.invitation_token,
+        managerEmail: invitation.email,
+        managerName: managerName,
         invitationLink,
         message: 'הזמנה לגישה לכל השאלונים במערכת'
       }
