@@ -60,7 +60,11 @@ export async function POST(request: NextRequest) {
       .eq('category', 'general')
       .single()
 
-    const questionnaireId = questionnaire?.id || 'general_questionnaire_id'
+    if (!questionnaire?.id) {
+      console.log('❌ No questionnaire found, using null')
+    }
+
+    const questionnaireId = questionnaire?.id || null
 
     // Insert invitation into database with correct schema
     const { data, error } = await supabase
