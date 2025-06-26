@@ -51,12 +51,12 @@ export async function POST(request: NextRequest) {
       .from('invitations')
       .insert({
         token,
+        questionnaire_id: 'all_questionnaires', // זמני - מעידה על גישה לכל השאלונים
         manager_email: managerEmail,
         manager_name: managerName,
         deadline: deadline || null,
         organization_name: decoded.organizationName || 'מתנ"ס',
-        invited_by_user_id: decoded.userId,
-        expires_at: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(), // 30 ימים
+        created_by: decoded.userId,
         status: 'pending'
       })
       .select()
@@ -81,7 +81,6 @@ export async function POST(request: NextRequest) {
         managerEmail: invitation.manager_email,
         managerName: invitation.manager_name,
         invitationLink,
-        expiresAt: invitation.expires_at,
         message: 'הזמנה לגישה לכל השאלונים במערכת'
       }
     })

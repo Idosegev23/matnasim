@@ -128,7 +128,7 @@ export default function AdminDashboardPage() {
 
       if (response.ok) {
         const data = await response.json()
-        setGeneratedToken(data.token)
+        setGeneratedToken(data.invitation.token)
         setWasReplaced(data.replaced || false)
         setShowInviteModal(false)
         setShowTokenModal(true)
