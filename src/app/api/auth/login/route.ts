@@ -11,11 +11,14 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'חסרים פרטים נדרשים' }, { status: 400 })
     }
 
+    // Convert email to lowercase for case-insensitive matching
+    const normalizedEmail = email.toLowerCase().trim()
+
     // כניסה רגילה דרך מסד הנתונים
     const { data: user, error } = await supabase
       .from('users')
       .select('*')
-      .eq('email', email)
+      .eq('email', normalizedEmail)
       .single()
 
     if (error || !user) {

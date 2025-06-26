@@ -13,11 +13,14 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // בדיקת תוקף הטוקן וקבלת פרטי ההזמנה
+    // Convert email to lowercase for case-insensitive matching
+    const normalizedEmail = email.toLowerCase().trim()
+
+    // בדיקת תוקף הטוקן וקבלת פרטי ההזמנה - using correct field name
     const { data: invitation, error: invitationError } = await supabase
       .from('invitations')
       .select('*')
-      .eq('token', token)
+      .eq('invitation_token', token)  // Use correct field name
       .eq('status', 'pending')
       .single()
 
@@ -28,17 +31,17 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // בדיקה שהמייל תואם להזמנה
-    if (invitation.manager_email !== email) {
+    // בדיקה שהמייל תואם להזמנה - using correct field name
+    if (invitation.email !== normalizedEmail) {
       return NextResponse.json(
         { message: 'כתובת המייל אינה תואמת להזמנה' },
         { status: 400 }
       )
     }
 
-    // בדיקת דדליין
+    // בדיקת דדליין - using correct field name
     const now = new Date()
-    const deadline = new Date(invitation.deadline)
+    const deadline = new Date(invitation.expires_at)  // Use correct field name
     if (now > deadline) {
       return NextResponse.json(
         { message: 'תוקף ההזמנה פג' },
@@ -50,7 +53,7 @@ export async function POST(request: NextRequest) {
     const { data: existingUser } = await supabase
       .from('users')
       .select('id')
-      .eq('email', email)
+      .eq('email', normalizedEmail)
       .single()
 
     if (existingUser) {
@@ -63,11 +66,11 @@ export async function POST(request: NextRequest) {
     // הצפנת סיסמה
     const hashedPassword = await hashPassword(password)
 
-    // יצירת המשתמש
+    // יצירת המשתמש - with normalized email
     const { data: newUser, error: userError } = await supabase
       .from('users')
       .insert({
-        email,
+        email: normalizedEmail,  // Store normalized email
         password_hash: hashedPassword,
         full_name: fullName,
         organization_name: organizationName,
@@ -85,12 +88,13 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // עדכון סטטוס ההזמנה
+    // עדכון סטטוס ההזמנה - using correct field name
     await supabase
       .from('invitations')
       .update({
-        status: 'registered',
-        registered_at: new Date().toISOString()
+        status: 'accepted',  // Use 'accepted' status
+        accepted_at: new Date().toISOString(),  // Use correct field name
+        updated_at: new Date().toISOString()
       })
       .eq('id', invitation.id)
 

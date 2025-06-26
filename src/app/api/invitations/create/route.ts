@@ -6,86 +6,91 @@ import crypto from 'crypto'
 export async function POST(request: NextRequest) {
   try {
     console.log('📨 Creating invitation...')
-
-    // בדיקת אימות
+    
+    // Verify authentication
     const authResult = await verifyToken(request)
-    if (!authResult.success || !authResult.payload) {
+    if (!authResult.success || !authResult.user) {
+      console.log('❌ Authentication failed')
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    const decoded = authResult.payload
-    console.log('✅ Token verified for user:', decoded.userId)
-
-    // בדיקת הרשאות אדמין
-    if (decoded.userType !== 'admin') {
-      return NextResponse.json({ error: 'Access denied - Admin only' }, { status: 403 })
+    const { userType, userId } = authResult.user
+    
+    // Check if user is admin
+    if (userType !== 'admin') {
+      console.log('❌ Access denied - not admin')
+      return NextResponse.json({ error: 'Access denied' }, { status: 403 })
     }
 
+    // Parse request body
     const { managerEmail, managerName, deadline } = await request.json()
+    console.log('📝 Request data:', { managerEmail, managerName, deadline })
 
-    if (!managerEmail || !managerName) {
+    if (!managerEmail || !managerName || !deadline) {
+      console.log('❌ Missing required fields')
       return NextResponse.json({ 
-        error: 'Missing required fields: managerEmail, managerName' 
+        error: 'Missing required fields: managerEmail, managerName, deadline' 
       }, { status: 400 })
     }
 
-    // יצירת טוקן ייחודי להזמנה
-    const token = crypto.randomBytes(32).toString('hex')
+    // Generate invitation token
+    const invitationToken = crypto.randomBytes(32).toString('hex')
+    console.log('🔑 Generated invitation token')
 
-    // בדיקה אם קיימת הזמנה קודמת למנהל זה
-    const { data: existingInvitation } = await supabase
-      .from('invitations')
-      .select('*')
-      .eq('email', managerEmail)
-      .single()
+    // Calculate expiration date from deadline
+    const expiresAt = new Date(deadline)
+    console.log('⏰ Invitation expires at:', expiresAt.toISOString())
 
-    if (existingInvitation) {
-      console.log('⚠️ Invitation already exists')
-      return NextResponse.json({ 
-        error: 'Invitation already exists for this manager' 
-      }, { status: 409 })
+    // Store user details as JSON
+    const userDetails = {
+      managerName,
+      invitedFor: 'questionnaire_system'
     }
 
-    // שמירת ההזמנה במסד הנתונים - גישה לכל השאלונים
-    const { data: invitation, error: invitationError } = await supabase
+    // Insert invitation into database with exact schema
+    const { data, error } = await supabase
       .from('invitations')
       .insert({
-        email: managerEmail,
-        invited_by: decoded.userId,
-        invited_to_role: 'viewer', // או 'manager' אם קיים
-        invitation_token: token,
-        expires_at: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(), // 30 ימים
+        email: managerEmail.toLowerCase(), // Store email in lowercase
+        invited_by: userId,
+        invited_to_role: 'super_admin', // Use 'super_admin' - the valid enum value
+        invited_to_projects: null, // No specific projects for questionnaire system
         status: 'pending',
-        message: `הזמנה למנהל ${managerName} למילוי שאלונים שנתיים`
+        invitation_token: invitationToken,
+        expires_at: expiresAt.toISOString(),
+        user_details: userDetails,
+        message: `You have been invited to access the questionnaire system by ${authResult.user.fullName}`,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
       })
       .select()
       .single()
 
-    if (invitationError) {
-      console.log('❌ Error creating invitation:', invitationError)
-      return NextResponse.json({ error: 'Failed to create invitation' }, { status: 500 })
+    if (error) {
+      console.log('❌ Error creating invitation:', error)
+      return NextResponse.json({ 
+        error: 'Failed to create invitation',
+        details: error 
+      }, { status: 500 })
     }
 
-    console.log('✅ Invitation created successfully')
-
-    // יצירת קישור להזמנה - גישה לכל השאלונים דרך הדשבורד
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
-    const invitationLink = `${baseUrl}/dashboard?token=${token}`
+    console.log('✅ Invitation created successfully:', data.id)
 
     return NextResponse.json({
       success: true,
       invitation: {
-        id: invitation.id,
-        token: invitation.invitation_token,
-        managerEmail: invitation.email,
-        managerName: managerName,
-        invitationLink,
-        message: 'הזמנה לגישה לכל השאלונים במערכת'
+        id: data.id,
+        email: data.email,
+        token: data.invitation_token,
+        expiresAt: data.expires_at,
+        status: data.status
       }
     })
 
   } catch (error) {
-    console.error('❌ Error in invitation creation:', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    console.error('❌ Unexpected error:', error)
+    return NextResponse.json({ 
+      error: 'Internal server error' 
+    }, { status: 500 })
   }
 } 
