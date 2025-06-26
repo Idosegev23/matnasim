@@ -94,24 +94,6 @@ export default function CompletedQuestionnairesPage() {
     })
   }
 
-  const getCategoryColor = (category: string) => {
-    const colors: { [key: string]: string } = {
-      accessibility: 'from-purple-500 to-pink-500',
-      accounting: 'from-blue-500 to-cyan-500',
-      budget: 'from-green-500 to-teal-500',
-      community: 'from-pink-500 to-rose-500',
-      financial: 'from-yellow-500 to-orange-500',
-      hr: 'from-indigo-500 to-purple-500',
-      inventory: 'from-gray-500 to-slate-500',
-      legal: 'from-red-500 to-pink-500',
-      salary: 'from-emerald-500 to-green-500',
-      security: 'from-orange-500 to-red-500',
-      sgarot: 'from-violet-500 to-purple-500',
-      general: 'from-slate-500 to-gray-500'
-    }
-    return colors[category] || 'from-gray-500 to-slate-500'
-  }
-
   const getCategoryIcon = (category: string) => {
     const icons: { [key: string]: string } = {
       accessibility: '♿',
@@ -145,15 +127,14 @@ export default function CompletedQuestionnairesPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 p-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-center h-64">
-            <div className="relative">
-              <div className="w-16 h-16 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin"></div>
-              <div className="w-12 h-12 border-4 border-purple-200 border-t-purple-600 rounded-full animate-spin absolute top-2 left-2 animate-reverse-spin"></div>
+      <div className="page-container" style={{ background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)' }}>
+        <div className="container">
+          <div className="card" style={{ textAlign: 'center', maxWidth: '600px' }}>
+            <div className="loading" style={{ margin: '40px auto' }}>
+              <div className="spinner"></div>
             </div>
+            <h2>טוען נתוני שאלונים מושלמים...</h2>
           </div>
-          <p className="text-center text-lg text-gray-600 mt-4">טוען נתוני שאלונים מושלמים...</p>
         </div>
       </div>
     )
@@ -161,15 +142,15 @@ export default function CompletedQuestionnairesPage() {
 
   if (error || !data) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 p-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="bg-white rounded-xl shadow-xl p-8 text-center">
-            <div className="text-6xl mb-4">⚠️</div>
-            <h1 className="text-2xl font-bold text-gray-800 mb-4">שגיאה</h1>
-            <p className="text-gray-600 mb-6">{error || 'לא ניתן לטעון את הנתונים'}</p>
+      <div className="page-container" style={{ background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)' }}>
+        <div className="container">
+          <div className="card" style={{ textAlign: 'center', maxWidth: '600px' }}>
+            <div style={{ fontSize: '64px', marginBottom: '20px' }}>⚠️</div>
+            <h2 style={{ color: '#e74c3c', marginBottom: '20px' }}>שגיאה</h2>
+            <p style={{ marginBottom: '30px' }}>{error || 'לא ניתן לטעון את הנתונים'}</p>
             <button 
               onClick={() => window.location.reload()} 
-              className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-lg font-medium hover:from-blue-600 hover:to-purple-700 transition-all duration-300"
+              className="btn btn-primary"
             >
               נסה שוב
             </button>
@@ -180,79 +161,144 @@ export default function CompletedQuestionnairesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 p-4">
-      <div className="max-w-7xl mx-auto">
+    <div style={{ 
+      minHeight: '100vh', 
+      background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
+      padding: '20px'
+    }}>
+      <div className="container" style={{ maxWidth: '1400px' }}>
         {/* Header */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between mb-6">
+        <div style={{ marginBottom: '40px' }}>
+          <div style={{ 
+            display: 'flex', 
+            justifyContent: 'space-between', 
+            alignItems: 'center', 
+            marginBottom: '30px',
+            flexWrap: 'wrap',
+            gap: '20px'
+          }}>
             <div>
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <h1 style={{ 
+                fontSize: '42px', 
+                fontWeight: 'bold',
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                marginBottom: '10px'
+              }}>
                 📊 שאלונים מושלמים
               </h1>
-              <p className="text-gray-600 mt-2">צפייה בשאלונים שהושלמו על ידי המנהלים</p>
+              <p style={{ color: '#6c757d', fontSize: '18px' }}>
+                צפייה בשאלונים שהושלמו על ידי המנהלים
+              </p>
             </div>
             <button
               onClick={() => router.push('/admin/dashboard')}
-              className="bg-white text-gray-700 px-6 py-3 rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 hover:border-gray-300"
+              className="btn btn-secondary"
+              style={{ 
+                padding: '12px 24px',
+                fontSize: '16px',
+                fontWeight: '500'
+              }}
             >
               ← חזרה לדשבורד
             </button>
           </div>
 
           {/* Stats Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-            <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
-              <div className="text-3xl mb-2">📋</div>
-              <div className="text-2xl font-bold text-blue-600">{data.stats.total_completed}</div>
-              <div className="text-sm text-gray-600">סה"כ שאלונים מושלמים</div>
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
+            gap: '25px',
+            marginBottom: '40px'
+          }}>
+            <div className="card hover-card" style={{ textAlign: 'center', padding: '30px' }}>
+              <div style={{ fontSize: '48px', marginBottom: '15px' }}>📊</div>
+              <div style={{ fontSize: '32px', fontWeight: 'bold', color: '#2563eb', marginBottom: '10px' }}>
+                {data.stats.total_completed}
+              </div>
+              <div style={{ color: '#6c757d', fontSize: '16px' }}>סה"כ שאלונים מושלמים</div>
             </div>
-            <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
-              <div className="text-3xl mb-2">👥</div>
-              <div className="text-2xl font-bold text-green-600">{data.stats.unique_users}</div>
-              <div className="text-sm text-gray-600">מנהלים פעילים</div>
+            
+            <div className="card hover-card" style={{ textAlign: 'center', padding: '30px' }}>
+              <div style={{ fontSize: '48px', marginBottom: '15px' }}>👥</div>
+              <div style={{ fontSize: '32px', fontWeight: 'bold', color: '#16a085', marginBottom: '10px' }}>
+                {data.stats.unique_users}
+              </div>
+              <div style={{ color: '#6c757d', fontSize: '16px' }}>משתמשים פעילים</div>
             </div>
-            <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
-              <div className="text-3xl mb-2">📂</div>
-              <div className="text-2xl font-bold text-purple-600">{data.stats.categories_completed}</div>
-              <div className="text-sm text-gray-600">קטגוריות פעילות</div>
+            
+            <div className="card hover-card" style={{ textAlign: 'center', padding: '30px' }}>
+              <div style={{ fontSize: '48px', marginBottom: '15px' }}>📝</div>
+              <div style={{ fontSize: '32px', fontWeight: 'bold', color: '#8e44ad', marginBottom: '10px' }}>
+                {data.stats.categories_completed}
+              </div>
+              <div style={{ color: '#6c757d', fontSize: '16px' }}>קטגוריות מושלמות</div>
             </div>
-            <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
-              <div className="text-3xl mb-2">📅</div>
-              <div className="text-2xl font-bold text-orange-600">{data.stats.completion_rate_this_month}</div>
-              <div className="text-sm text-gray-600">השלמות החודש</div>
+            
+            <div className="card hover-card" style={{ textAlign: 'center', padding: '30px' }}>
+              <div style={{ fontSize: '48px', marginBottom: '15px' }}>📈</div>
+              <div style={{ fontSize: '32px', fontWeight: 'bold', color: '#e67e22', marginBottom: '10px' }}>
+                {data.stats.completion_rate_this_month}%
+              </div>
+              <div style={{ color: '#6c757d', fontSize: '16px' }}>שיעור השלמה החודש</div>
             </div>
           </div>
 
           {/* Filters */}
-          <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 mb-8">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">🔍 סינון נתונים</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="card" style={{ padding: '25px', marginBottom: '30px' }}>
+            <h3 style={{ marginBottom: '20px', color: '#2c3e50' }}>🔍 סינון תוצאות</h3>
+            <div style={{ 
+              display: 'grid', 
+              gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
+              gap: '20px' 
+            }}>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">קטגוריה</label>
+                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>
+                  סינון לפי קטגוריה:
+                </label>
                 <select
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  style={{
+                    width: '100%',
+                    padding: '12px',
+                    border: '2px solid #e9ecef',
+                    borderRadius: '8px',
+                    fontSize: '16px',
+                    backgroundColor: 'white'
+                  }}
                 >
                   <option value="all">כל הקטגוריות</option>
-                  {data.by_category.map(category => (
-                    <option key={category.category} value={category.category}>
-                      {getCategoryIcon(category.category)} {category.title}
+                  {data.by_category.map(cat => (
+                    <option key={cat.category} value={cat.category}>
+                      {getCategoryIcon(cat.category)} {cat.title}
                     </option>
                   ))}
                 </select>
               </div>
+              
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">מנהל</label>
+                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>
+                  סינון לפי משתמש:
+                </label>
                 <select
                   value={selectedUser}
                   onChange={(e) => setSelectedUser(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  style={{
+                    width: '100%',
+                    padding: '12px',
+                    border: '2px solid #e9ecef',
+                    borderRadius: '8px',
+                    fontSize: '16px',
+                    backgroundColor: 'white'
+                  }}
                 >
-                  <option value="all">כל המנהלים</option>
+                  <option value="all">כל המשתמשים</option>
                   {uniqueUsers.map(user => (
                     <option key={user.id} value={user.id}>
-                      {user.name} ({user.email})
+                      {user.name} ({user.organization})
                     </option>
                   ))}
                 </select>
@@ -261,73 +307,134 @@ export default function CompletedQuestionnairesPage() {
           </div>
         </div>
 
-        {/* Questionnaires List */}
-        <div className="space-y-4">
+        {/* Results */}
+        <div>
+          <h3 style={{ 
+            marginBottom: '25px', 
+            color: '#2c3e50',
+            fontSize: '24px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '10px'
+          }}>
+            📋 שאלונים מושלמים ({filteredQuestionnaires.length})
+          </h3>
+          
           {filteredQuestionnaires.length === 0 ? (
-            <div className="bg-white rounded-xl p-8 shadow-lg text-center">
-              <div className="text-6xl mb-4">🔍</div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">לא נמצאו שאלונים</h3>
-              <p className="text-gray-600">נסה לשנות את הסינון לצפייה בתוצאות אחרות</p>
+            <div className="card" style={{ textAlign: 'center', padding: '60px' }}>
+              <div style={{ fontSize: '72px', marginBottom: '20px' }}>📭</div>
+              <h3 style={{ color: '#6c757d', marginBottom: '15px' }}>לא נמצאו שאלונים מושלמים</h3>
+              <p style={{ color: '#adb5bd' }}>נסה לשנות את הסינון או לחכות לעוד השלמות</p>
             </div>
           ) : (
-            filteredQuestionnaires.map(item => (
-              <div key={`${item.user.id}-${item.questionnaire.id}`} className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-                <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 items-center">
-                  <div className="lg:col-span-2">
-                    <div className="flex items-center space-x-4 space-x-reverse mb-3">
-                      <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${getCategoryColor(item.questionnaire.category)} flex items-center justify-center text-white text-xl`}>
-                        {getCategoryIcon(item.questionnaire.category)}
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-800">{item.questionnaire.title}</h3>
-                        <p className="text-sm text-gray-600">{item.questionnaire.category}</p>
-                      </div>
+            <div style={{ 
+              display: 'grid', 
+              gridTemplateColumns: 'repeat(auto-fill, minmax(400px, 1fr))', 
+              gap: '25px' 
+            }}>
+              {filteredQuestionnaires.map((item) => (
+                <div 
+                  key={`${item.user.id}-${item.questionnaire.id}`} 
+                  className="card hover-card"
+                  style={{ padding: '25px' }}
+                >
+                  <div style={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    marginBottom: '20px',
+                    gap: '15px'
+                  }}>
+                    <div style={{ fontSize: '36px' }}>
+                      {getCategoryIcon(item.questionnaire.category)}
                     </div>
-                    <div className="text-sm text-gray-600">
-                      <div className="flex items-center space-x-2 space-x-reverse mb-1">
-                        <span>👤</span>
-                        <span>{item.user.name}</span>
-                      </div>
-                      <div className="flex items-center space-x-2 space-x-reverse mb-1">
-                        <span>📧</span>
-                        <span>{item.user.email}</span>
-                      </div>
-                      <div className="flex items-center space-x-2 space-x-reverse">
-                        <span>🏢</span>
-                        <span>{item.user.organization}</span>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div>
-                    <div className="text-center">
-                      <div className="text-2xl font-bold text-green-600 mb-1">{item.progress_percentage}%</div>
-                      <div className="text-sm text-gray-600">הושלם</div>
-                      <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
-                        <div 
-                          className="bg-gradient-to-r from-green-400 to-green-600 h-2 rounded-full transition-all duration-300" 
-                          style={{ width: `${item.progress_percentage}%` }}
-                        ></div>
-                      </div>
-                    </div>
-                    <div className="text-center mt-3">
-                      <div className="text-sm text-gray-600">
-                        {formatDate(item.completion_date)}
-                      </div>
+                    <div style={{ flex: 1 }}>
+                      <h4 style={{ 
+                        margin: '0 0 5px 0', 
+                        color: '#2c3e50',
+                        fontSize: '18px',
+                        fontWeight: '600'
+                      }}>
+                        {item.questionnaire.title}
+                      </h4>
+                      <p style={{ 
+                        margin: 0, 
+                        color: '#6c757d',
+                        fontSize: '14px'
+                      }}>
+                        {item.questionnaire.category}
+                      </p>
                     </div>
                   </div>
-                  
-                  <div className="text-center">
-                    <button
-                      onClick={() => handleViewResponses(item.user.id, item.questionnaire.id)}
-                      className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-lg font-medium hover:from-blue-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
-                    >
-                      👁️ צפה בתשובות
-                    </button>
+
+                  <div style={{ marginBottom: '20px' }}>
+                    <div style={{ 
+                      display: 'flex', 
+                      justifyContent: 'space-between', 
+                      alignItems: 'center',
+                      marginBottom: '8px'
+                    }}>
+                      <span style={{ fontWeight: '500', color: '#495057' }}>התקדמות:</span>
+                      <span style={{ 
+                        fontWeight: 'bold', 
+                        color: item.progress_percentage === 100 ? '#27ae60' : '#f39c12',
+                        fontSize: '16px'
+                      }}>
+                        {item.progress_percentage}%
+                      </span>
+                    </div>
+                    <div style={{ 
+                      width: '100%', 
+                      height: '8px', 
+                      backgroundColor: '#e9ecef',
+                      borderRadius: '4px',
+                      overflow: 'hidden'
+                    }}>
+                      <div style={{ 
+                        width: `${item.progress_percentage}%`,
+                        height: '100%',
+                        background: item.progress_percentage === 100 
+                          ? 'linear-gradient(90deg, #27ae60, #2ecc71)'
+                          : 'linear-gradient(90deg, #f39c12, #e67e22)',
+                        borderRadius: '4px',
+                        transition: 'width 0.3s ease'
+                      }}></div>
+                    </div>
                   </div>
+
+                  <div style={{ marginBottom: '20px', padding: '15px', backgroundColor: '#f8f9fa', borderRadius: '8px' }}>
+                    <div style={{ marginBottom: '8px' }}>
+                      <strong style={{ color: '#495057' }}>👤 משתמש:</strong>
+                      <span style={{ marginRight: '8px' }}>{item.user.name}</span>
+                    </div>
+                    <div style={{ marginBottom: '8px' }}>
+                      <strong style={{ color: '#495057' }}>📧 אימייל:</strong>
+                      <span style={{ marginRight: '8px' }}>{item.user.email}</span>
+                    </div>
+                    <div style={{ marginBottom: '8px' }}>
+                      <strong style={{ color: '#495057' }}>🏢 ארגון:</strong>
+                      <span style={{ marginRight: '8px' }}>{item.user.organization}</span>
+                    </div>
+                    <div>
+                      <strong style={{ color: '#495057' }}>📅 הושלם:</strong>
+                      <span style={{ marginRight: '8px' }}>{formatDate(item.completion_date)}</span>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => handleViewResponses(item.user.id, item.questionnaire.id)}
+                    className="btn btn-primary"
+                    style={{ 
+                      width: '100%',
+                      padding: '12px',
+                      fontSize: '16px',
+                      fontWeight: '500'
+                    }}
+                  >
+                    👁️ צפה בתשובות מפורטות
+                  </button>
                 </div>
-              </div>
-            ))
+              ))}
+            </div>
           )}
         </div>
       </div>

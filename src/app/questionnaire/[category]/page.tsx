@@ -54,10 +54,55 @@ export default function QuestionnairePage() {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [currentSection, setCurrentSection] = useState<string | null>(null);
+  const [autoSaveStatus, setAutoSaveStatus] = useState<string>(''); // סטטוס שמירה אוטומטית
 
   useEffect(() => {
     fetchQuestionnaire();
   }, [category]);
+
+  // שמירה אוטומטית לפני יציאה מהדף
+  useEffect(() => {
+    const handleBeforeUnload = async (e: BeforeUnloadEvent) => {
+      // שמירת כל התשובות הפתוחות
+      const pendingAnswers = Object.keys(answers);
+      if (pendingAnswers.length > 0) {
+        for (const questionId of pendingAnswers) {
+          if (answers[questionId]?.radio || answers[questionId]?.text) {
+            try {
+              await saveAnswer(questionId);
+            } catch (error) {
+              console.error('Error auto-saving before unload:', error);
+            }
+          }
+        }
+      }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, [answers]);
+
+  // שמירה אוטומטית כל 30 שניות
+  useEffect(() => {
+         const autoSaveInterval = setInterval(async () => {
+       const pendingAnswers = Object.keys(answers);
+       for (const questionId of pendingAnswers) {
+         if (answers[questionId]?.radio || answers[questionId]?.text) {
+           try {
+             await saveAnswer(questionId, false); // שמירה ללא הצגת סטטוס
+             console.log('🔄 Auto-saved answer for question:', questionId);
+           } catch (error) {
+             console.error('Error auto-saving:', error);
+           }
+         }
+       }
+     }, 30000); // כל 30 שניות
+
+    return () => clearInterval(autoSaveInterval);
+  }, [answers]);
 
   const fetchQuestionnaire = async () => {
     try {
@@ -96,22 +141,20 @@ export default function QuestionnairePage() {
         console.log(`🔍 Question ${question.question_number} (ID: ${question.id}):`, question.existing_answer);
         
         if (question.existing_answer) {
-          const hasRadio = question.existing_answer.radio_answer && 
-                          question.existing_answer.radio_answer !== null && 
-                          question.existing_answer.radio_answer.trim() !== '';
-          const hasText = question.existing_answer.text_answer && 
-                         question.existing_answer.text_answer !== null && 
-                         question.existing_answer.text_answer.trim() !== '';
+          // בדיקה גמישה יותר לתשובות קיימות
+          const radioAnswer = question.existing_answer.radio_answer;
+          const textAnswer = question.existing_answer.text_answer;
           
-          if (hasRadio || hasText) {
-                        existingAnswers[question.id] = {
-              radio: question.existing_answer.radio_answer || '',
-              text: question.existing_answer.text_answer || ''
+          // אם יש כל סוג של תשובה, נטען אותה
+          if (radioAnswer !== null || textAnswer !== null) {
+            existingAnswers[question.id] = {
+              radio: radioAnswer || '',
+              text: textAnswer || ''
             };
             console.log(`✅ Loading existing answer for question ${question.question_number}:`, {
               questionId: question.id,
-              radio: question.existing_answer.radio_answer,
-              text: question.existing_answer.text_answer
+              radio: radioAnswer,
+              text: textAnswer
             });
           } else {
             console.log(`ℹ️ No existing answer for question ${question.question_number}`);
@@ -146,9 +189,11 @@ export default function QuestionnairePage() {
     }));
   };
 
-  const saveAnswer = async (questionId: string) => {
+  const saveAnswer = async (questionId: string, showStatus: boolean = true) => {
     try {
       setSaving(true);
+      if (showStatus) setAutoSaveStatus('שומר...');
+      
       const token = localStorage.getItem('token');
       
       const response = await fetch(`/api/questionnaire/${category}/answers`, {
@@ -168,9 +213,18 @@ export default function QuestionnairePage() {
       }
 
       console.log('Answer saved successfully');
+      if (showStatus) {
+        setAutoSaveStatus('נשמר ✓');
+        setTimeout(() => setAutoSaveStatus(''), 2000);
+      }
     } catch (err) {
       console.error('Error saving answer:', err);
-      alert('שגיאה בשמירת התשובה');
+      if (showStatus) {
+        setAutoSaveStatus('שגיאה בשמירה ✗');
+        setTimeout(() => setAutoSaveStatus(''), 3000);
+      } else {
+        alert('שגיאה בשמירת התשובה');
+      }
     } finally {
       setSaving(false);
     }
@@ -487,6 +541,26 @@ export default function QuestionnairePage() {
                 </p>
               </div>
             </div>
+            
+            {/* Auto Save Status */}
+            {autoSaveStatus && (
+              <div style={{
+                background: autoSaveStatus.includes('✓') ? 'rgba(34, 197, 94, 0.15)' : 
+                           autoSaveStatus.includes('✗') ? 'rgba(239, 68, 68, 0.15)' : 
+                           'rgba(59, 130, 246, 0.15)',
+                color: autoSaveStatus.includes('✓') ? '#22c55e' : 
+                       autoSaveStatus.includes('✗') ? '#ef4444' : '#3b82f6',
+                padding: '8px 16px',
+                borderRadius: '12px',
+                fontSize: '14px',
+                fontWeight: '500',
+                border: `1px solid ${autoSaveStatus.includes('✓') ? '#22c55e' : 
+                                    autoSaveStatus.includes('✗') ? '#ef4444' : '#3b82f6'}`,
+                transition: 'all 0.3s ease'
+              }}>
+                {autoSaveStatus}
+              </div>
+            )}
             
             {/* Progress */}
             <div style={{
