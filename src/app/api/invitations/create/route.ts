@@ -9,12 +9,12 @@ export async function POST(request: NextRequest) {
     
     // Verify authentication
     const authResult = await verifyToken(request)
-    if (!authResult.success || !authResult.user) {
+    if (!authResult.success || !authResult.payload) {
       console.log('❌ Authentication failed')
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    const { userType, userId } = authResult.user
+    const { userType, userId } = authResult.payload
     
     // Check if user is admin
     if (userType !== 'admin') {
